@@ -3,46 +3,45 @@ import ErrorMessage from "./login-error";
 import { Link } from "react-router-dom";
 import logo from "../../assets/icon.png";
 import "../../styles/login-form.css";
-import Api from '../../api-client'
+import Api from "../../api-client";
 
-function Login (props) {
+function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [active, setActive] = useState(false);
 
-  const onEmailChange = event => {
+  const onEmailChange = (event) => {
     setEmail(event.target.value);
   };
 
-  const onPasswordChange = event => {
+  const onPasswordChange = (event) => {
     setPassword(event.target.value);
   };
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     const post = {
       email,
-      password
+      password,
     };
-    Api.login(post)
-      .then(data => {
-        if (data.message) {
-          setError(data.message);
-        } else if (data.user) {
-          props.setUser(data.user);
-          props.setisAuth(true);
-          props.setisLoading(false);
-        }
-      });
+    Api.login(post).then((data) => {
+      if (data.message) {
+        setError(data.message);
+      } else if (data.user) {
+        props.setUser(data.user);
+        props.setisAuth(true);
+        props.setisLoading(false);
+      }
+    });
   };
 
   const onFocus = () => {
-    setActive(true)
-  }
+    setActive(true);
+  };
   const onBlur = (e) => {
-    if (e.target.value === "") setActive(false)
-  }
+    if (e.target.value === "") setActive(false);
+  };
 
   return (
     <div className="login__container">
@@ -53,7 +52,6 @@ function Login (props) {
           <h1>Please sign in</h1>
           <div className="error-container">
             {error.length > 0 && <ErrorMessage error={error} />}
-
           </div>
           <div className="txtb">
             <input
@@ -64,7 +62,7 @@ function Login (props) {
               onBlur={onBlur}
               onChange={onEmailChange}
               value={email}
-              className={active ? 'focus' : ''}
+              className={active ? "focus" : ""}
             />
             <span data-placeholder="Email"></span>
           </div>
@@ -77,28 +75,25 @@ function Login (props) {
               onBlur={onBlur}
               onChange={onPasswordChange}
               value={password}
-              className={active ? 'focus' : ''}
+              className={active ? "focus" : ""}
             />
             <span data-placeholder="Password"></span>
           </div>
-          <input
-            type="submit"
-            className="logbtn"
-            value="Login"
-          />
+          <input type="submit" className="logbtn" value="Login" />
           <div className="bottom-text">
-            Don't have account? <Link
+            Don't have account?{" "}
+            <Link
               // className="button login-form__link"
               // style={{ display: "inline" }}
               to={"/register"}
             >
               Register
-        </Link>
+            </Link>
           </div>
         </form>
       </div>
     </div>
-  )
+  );
 }
 
 export default Login;

@@ -1,9 +1,9 @@
-import React from 'react';
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
-import Loader from 'react-loader-spinner'
-import '../../styles/loading.css'
+import React from "react";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
+import "../../styles/loading.css";
 
-function Loading () {
+function Loading() {
   return (
     <div className="loading">
       <Loader
@@ -15,7 +15,7 @@ function Loading () {
       />
       Loading. Please Wait...
     </div>
-  )
+  );
 }
 
 export default Loading;

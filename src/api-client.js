@@ -1,16 +1,17 @@
-const BASE_URL = 'https://db-news-scraper-backend.herokuapp.com'
+const BASE_URL = "https://db-news-scraper-backend.herokuapp.com";
 
 export default {
   getHeadlines: (day, month, year) => {
     const options = {
-      method: 'GET',
+      method: "GET",
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
       credentials: "include",
-    }
-    return fetchRequest(`graphql?query={ headline(year: ${year} month:${month} day:${day} )
+    };
+    return fetchRequest(
+      `graphql?query={ headline(year: ${year} month:${month} day:${day} )
       {day 
       month 
       year 
@@ -21,122 +22,142 @@ export default {
       image
       link 
       scraperID}
-    }`, options);
+    }`,
+      options
+    );
   },
   getWebsite: (website) => {
     const options = {
-      method: 'GET',
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
       credentials: "include",
-    }
-    return fetchRequest(`graphql?query={  html(name:"${website}"){
+    };
+    return fetchRequest(
+      `graphql?query={  html(name:"${website}"){
       htmlBody
     }
-  }`, options);
+  }`,
+      options
+    );
   },
   forceRefresh: () => {
     const options = {
-      method: 'GET',
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
       credentials: "include",
-    }
-    return fetchRequest(`graphql?query={  refresh( name:"refresh")
-  }`, options);
+    };
+    return fetchRequest(
+      `graphql?query={  refresh( name:"refresh")
+  }`,
+      options
+    );
   },
-  saveNewFeed: (webLink, webName, titlePath, root, summaryPath, linkPath, imagePath, imageTag) => {
-    console.log('saving new feed')
-    titlePath = JSON.stringify(titlePath)
-    summaryPath = JSON.stringify(summaryPath)
-    linkPath = JSON.stringify(linkPath)
-    imagePath = JSON.stringify(imagePath)
+  saveNewFeed: (
+    webLink,
+    webName,
+    titlePath,
+    root,
+    summaryPath,
+    linkPath,
+    imagePath,
+    imageTag
+  ) => {
+    console.log("saving new feed");
+    titlePath = JSON.stringify(titlePath);
+    summaryPath = JSON.stringify(summaryPath);
+    linkPath = JSON.stringify(linkPath);
+    imagePath = JSON.stringify(imagePath);
     const options = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       credentials: "include",
-      body: JSON.stringify(
-        { query: `mutation add { addFeed(website: "${webLink}" name: "${webName}" titlePath: ${titlePath} titleRoot: "${root}" summaryPath: ${summaryPath} linkPath: ${linkPath} imagePath: ${imagePath} imageTag:"${imageTag}") { website } }` })
-    }
-    console.log(options.body)
+      body: JSON.stringify({
+        query: `mutation add { addFeed(website: "${webLink}" name: "${webName}" titlePath: ${titlePath} titleRoot: "${root}" summaryPath: ${summaryPath} linkPath: ${linkPath} imagePath: ${imagePath} imageTag:"${imageTag}") { website } }`,
+      }),
+    };
+    console.log(options.body);
     return fetchRequest(`graphql?`, options);
   },
   deleteHeadline: (id) => {
     const options = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       credentials: "include",
-      body: JSON.stringify(
-        { query: `mutation deleteHeadline { deleteHeadline(id: "${id}") }` })
-    }
+      body: JSON.stringify({
+        query: `mutation deleteHeadline { deleteHeadline(id: "${id}") }`,
+      }),
+    };
     return fetchRequest(`graphql?`, options);
   },
   deleteScraper: (id) => {
     const options = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       credentials: "include",
-      body: JSON.stringify(
-        { query: `mutation deleteScraper { deleteScraper(id: "${id}") }` })
-    }
+      body: JSON.stringify({
+        query: `mutation deleteScraper { deleteScraper(id: "${id}") }`,
+      }),
+    };
     return fetchRequest(`graphql?`, options);
   },
   authenticate: () => {
     const options = {
-      method: 'GET',
+      method: "GET",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       credentials: "include",
-    }
+    };
     return fetchRequest(`users`, options);
   },
   login: (post) => {
     const options = {
-      method: 'POST',
+      method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       credentials: "include",
-      body: JSON.stringify(post)
-    }
+      body: JSON.stringify(post),
+    };
     return fetchRequest(`users/login`, options);
   },
   register: (post) => {
     const options = {
-      method: 'POST',
+      method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       credentials: "include",
-      body: JSON.stringify(post)
-    }
+      body: JSON.stringify(post),
+    };
     return fetchRequest(`users/register`, options);
   },
   logout: () => {
     const options = {
-      method: 'GET',
+      method: "GET",
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
       credentials: "include",
-      body: JSON.stringify()
-    }
+      body: JSON.stringify(),
+    };
     return fetchRequest(`users/logout`, options);
   },
 };
 
 const fetchRequest = (url, options) => {
   return fetch(`${BASE_URL}/${url}`, options)
-    .then(res => res.status <= 400 ? res : Promise.reject(res))
-    .then(res => {
-      return res.json()
+    .then((res) => (res.status <= 400 ? res : Promise.reject(res)))
+    .then((res) => {
+      return res.json();
     })
     .catch((err) => {
-      console.log(`${err.message} while fetching /${url}`)
+      console.log(`${err.message} while fetching /${url}`);
     });
 };

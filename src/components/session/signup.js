@@ -3,7 +3,7 @@ import ErrorMessage from "./ErrorMessage";
 import SuccessMessage from "./SuccessMessage";
 import { Link } from "react-router-dom";
 import "../../styles/signup-form.css";
-import Api from '../../api-client';
+import Api from "../../api-client";
 import logo from "../../assets/icon.png";
 
 class SignUp extends Component {
@@ -23,37 +23,36 @@ class SignUp extends Component {
     this.onFocus = this.onFocus.bind(this);
     this.onBlur = this.onBlur.bind(this);
   }
-  onChange (event) {
+  onChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
-  onSubmit (e) {
+  onSubmit(e) {
     e.preventDefault();
     const post = {
       name: this.state.name,
       email: this.state.email,
       password: this.state.password,
-      password2: this.state.password2
+      password2: this.state.password2,
     };
-    Api.register(post)
-      .then(data => {
-        if (data.error) {
-          this.setState({ errors: data.error });
-        } else if (data.success) {
-          this.setState({ success: data.success });
-          setTimeout(() => {
-            this.props.history.push("/login");
-          }, 2000);
-        }
-      });
+    Api.register(post).then((data) => {
+      if (data.error) {
+        this.setState({ errors: data.error });
+      } else if (data.success) {
+        this.setState({ success: data.success });
+        setTimeout(() => {
+          this.props.history.push("/login");
+        }, 2000);
+      }
+    });
   }
-  onFocus () {
+  onFocus() {
     this.setState({ active: true });
   }
   onBlur(e) {
     if (e.target.value === "") this.setState({ active: false });
   }
 
-  render () {
+  render() {
     return (
       <div className="login__container">
         <div className="login-subcontainer">
@@ -63,7 +62,7 @@ class SignUp extends Component {
             <h1>Please register</h1>
             <div className="error-container">
               {this.state.errors.length > 0 &&
-                this.state.errors.map(error => {
+                this.state.errors.map((error) => {
                   return (
                     <div>
                       <ErrorMessage error={error} />
@@ -73,7 +72,6 @@ class SignUp extends Component {
               {this.state.success.length > 0 && (
                 <SuccessMessage success={this.state.success} />
               )}
-
             </div>
             <div className="txtb">
               <input
@@ -84,7 +82,7 @@ class SignUp extends Component {
                 onBlur={this.onBlur}
                 onChange={this.onChange}
                 value={this.state.name}
-                className={this.state.active ? 'focus' : ''}
+                className={this.state.active ? "focus" : ""}
               />
               <span data-placeholder="Name"></span>
             </div>
@@ -97,7 +95,7 @@ class SignUp extends Component {
                 onBlur={this.onBlur}
                 onChange={this.onChange}
                 value={this.state.email}
-                className={this.state.active ? 'focus' : ''}
+                className={this.state.active ? "focus" : ""}
               />
               <span data-placeholder="Email"></span>
             </div>
@@ -110,7 +108,7 @@ class SignUp extends Component {
                 onBlur={this.onBlur}
                 onChange={this.onChange}
                 value={this.state.password}
-                className={this.state.active ? 'focus' : ''}
+                className={this.state.active ? "focus" : ""}
               />
               <span data-placeholder="Password"></span>
             </div>
@@ -123,21 +121,13 @@ class SignUp extends Component {
                 onBlur={this.onBlur}
                 onChange={this.onChange}
                 value={this.state.password2}
-                className={this.state.active ? 'focus' : ''}
+                className={this.state.active ? "focus" : ""}
               />
               <span data-placeholder="Confirm Password"></span>
             </div>
-            <input
-              type="submit"
-              className="logbtn"
-              value="Register"
-            />
+            <input type="submit" className="logbtn" value="Register" />
             <div className="bottom-text">
-              Already have an account? <Link
-                to={"/login"}
-              >
-                Login
-        </Link>
+              Already have an account? <Link to={"/login"}>Login</Link>
             </div>
           </form>
         </div>

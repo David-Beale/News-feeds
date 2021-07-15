@@ -1,43 +1,50 @@
-import React from 'react';
-import Api from '../../api-client'
-import { Card, CardMedia, CardContent, Typography } from '@material-ui/core';
-import DeleteForever from '@material-ui/icons/DeleteForever';
+import React from "react";
+import Api from "../../api-client";
+import { Card, CardMedia, CardContent, Typography } from "@material-ui/core";
+import DeleteForever from "@material-ui/icons/DeleteForever";
 
-export default ({ headline, deleteHeadline, deleteScraper, isActiveStatus, isActiveStatusScraper }) => {
-
+export default ({
+  headline,
+  deleteHeadline,
+  deleteScraper,
+  isActiveStatus,
+  isActiveStatusScraper,
+}) => {
   const deleteItem = (e) => {
     e.preventDefault();
-    if (deleteHeadline) Api.deleteHeadline(headline.id)
-    if (deleteScraper) Api.deleteScraper(headline.scraperID)
+    if (deleteHeadline) Api.deleteHeadline(headline.id);
+    if (deleteScraper) Api.deleteScraper(headline.scraperID);
     setTimeout(() => {
       window.location.reload();
     }, 1000);
-  }
+  };
   const activeStatus = () => {
     if (isActiveStatusScraper && !isActiveStatus) {
-      return 'danger2';
+      return "danger2";
     } else if (isActiveStatus && !isActiveStatusScraper) {
-      return 'danger';
+      return "danger";
     } else if (isActiveStatus && isActiveStatusScraper) {
-      return 'doubleDanger'
+      return "doubleDanger";
     }
   };
 
   return (
-    < a
+    <a
       className="anchor-link"
       href={headline.link}
       rel="noopener noreferrer"
       target="_blank"
     >
-      <Card className='card__container' raised={true}>
-        {(deleteScraper || deleteHeadline) &&
-          <div onClick={deleteItem} className={`${activeStatus()} card__delete-button`}><DeleteForever /></div>
-        }
-        <CardMedia
-          className="card__image"
-          image={`${headline.image}`}
-        />
+      <Card className="card__container" raised={true}>
+        {(deleteScraper || deleteHeadline) && (
+          <div
+            onClick={deleteItem}
+            className={`${activeStatus()} card__delete-button`}
+          >
+            <DeleteForever />
+          </div>
+        )}
+        <CardMedia className="card__image" image={`${headline.image}`} />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {headline.newspaper}
@@ -50,7 +57,6 @@ export default ({ headline, deleteHeadline, deleteScraper, isActiveStatus, isAct
           </Typography> */}
         </CardContent>
       </Card>
-    </a >
-  )
-}
-
+    </a>
+  );
+};
