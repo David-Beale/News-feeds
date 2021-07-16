@@ -5,7 +5,8 @@ import renderHTML from "react-render-html";
 
 import Draggable from "react-draggable";
 
-import NavBar from "./Header/Header";
+import Header from "./Header/Header";
+import AddNewFeedMenu from "./AddNewFeedMenu/AddNewFeedMenu";
 
 let date = new Date().getDate();
 let month = new Date().getMonth() + 1;
@@ -14,8 +15,7 @@ let year = new Date().getFullYear();
 function App() {
   // const [headlines, setHeadlines] = useState([]);
   // const [website, setWebsite] = useState("");
-  // const [webName, setWebName] = useState("");
-  // const [webLink, setWebLink] = useState("");
+
   // const [concatWebLink, setConcatWebLink] = useState("");
   // const [show, setShow] = useState(true);
   // const [title, setTitle] = useState("");
@@ -282,47 +282,12 @@ function App() {
   //   setCurrentOption(1);
   //   setShowOptions(false);
   // }
-  // const handleAddressChange = (event) => {
-  //   setWebLink(event.target.value);
-  // };
-  // const handleNameChange = (event) => {
-  //   setWebName(event.target.value);
-  // };
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   // eslint-disable-next-line no-useless-escape
-  //   const regex = "^(?:https?://)?(?:[^@/\n]+@)?(?:www.)?([^:/?\n]+)";
-  //   let localLink = webLink;
-  //   if (webLink[0] === "w" && webLink[1] === "w" && webLink[2] === "w") {
-  //     setWebLink("https://" + webLink);
-  //     localLink = "https://" + webLink;
-  //   } else if (
-  //     webLink[0] !== "w" &&
-  //     webLink[1] !== "w" &&
-  //     webLink[2] !== "w" &&
-  //     webLink[0] !== "h" &&
-  //     webLink[1] !== "t" &&
-  //     webLink[2] !== "t"
-  //   ) {
-  //     setWebLink("https://www." + webLink);
-  //     localLink = "https://www." + webLink;
-  //   }
-  //   setConcatWebLink(localLink.match(regex)[0]);
-  //   Api.getWebsite(localLink).then((result) => {
-  //     setWebsite(result.data.html.htmlBody);
-  //   });
-  //   setShowForm(false);
-  // };
-  // const handleCancel = () => {
-  //   setShow(true);
-  //   setShowForm(false);
-  // };
 
   return (
-    <div>
-      <div className="app__container">
-        <NavBar />
-        {/* {show && (
+    <div className="app__container">
+      <Header />
+      <AddNewFeedMenu />
+      {/* {show && (
           <HeadlineList
             headlines={headlines}
             deleteHeadline={deleteHeadline}
@@ -335,42 +300,7 @@ function App() {
           <div className="second__container">
             <div className="first-form__container">
               {showForm && (
-                <div className="add-feed__container">
-                  <div className=""></div>
-                  <form
-                    id="form"
-                    className="first-form"
-                    onSubmit={handleSubmit}
-                    autoComplete="new-password"
-                  >
-                    <label htmlFor="httpAddress">Web Address:</label>
-                    <input
-                      autoComplete="off"
-                      type="text"
-                      id="httpAddress"
-                      placeholder="Enter a web address..."
-                      onChange={handleAddressChange}
-                      value={webLink}
-                    ></input>
-                    <label htmlFor="name">Custom scraper name:</label>
-                    <input
-                      autoComplete="off"
-                      type="text"
-                      id="name"
-                      placeholder="Enter a name (e.g. BBC Most Read No.1)..."
-                      onChange={handleNameChange}
-                      value={webName}
-                    ></input>
-                    <div>
-                      <button className="addbutton" type="submit">
-                        Submit
-                      </button>
-                      <button className="" onClick={handleCancel}>
-                        Cancel
-                      </button>
-                    </div>
-                  </form>
-                </div>
+              
               )}
               {!showForm && (
                 <Draggable>
@@ -527,7 +457,6 @@ function App() {
             )}
           </div>
         )} */}
-      </div>
     </div>
   );
 }

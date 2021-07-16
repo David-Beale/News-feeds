@@ -48,7 +48,6 @@ export default function ForgotPasswordVerify({ history, setHeight }) {
     const regex = /Code=[^&]+/gi;
     const search = window.location.search;
     const code = search.match(regex)[0].slice(5);
-    console.log(code);
     setVerificationCode(code);
   }, []);
 

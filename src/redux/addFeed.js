@@ -1,17 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const initialState = {
-  addFeed: false,
+  enabled: false,
 };
 const addFeed = createSlice({
   name: "addFeed",
   initialState,
   reducers: {
     enableAddFeed(state) {
-      state.addFeed = true;
+      state.enabled = true;
     },
     disableAddFeed(state) {
-      state.addFeed = false;
+      state.enabled = false;
     },
   },
 });
