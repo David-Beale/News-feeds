@@ -1,13 +1,14 @@
 import React from "react";
-import { useAuth } from "../../../../AuthLayer/useAuth";
+import { useDispatch } from "react-redux";
+import { signOut } from "../../../../../redux/auth";
 
 import { SignOutButton, SignOutContainer } from "./SignOutStyle";
 
 export default function LogoutButton() {
-  const { signOut } = useAuth();
+  const dispatch = useDispatch();
   const onSignOut = async () => {
     try {
-      await signOut();
+      await dispatch(signOut());
     } catch (error) {
       console.log("failed to logout");
     }

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useAuth } from "../../AuthLayer/useAuth";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 
 import FormErrors from "./FormErrors";
@@ -13,11 +12,13 @@ import {
   AuthButton,
   styleLoginIcon,
 } from "../authStyle";
+import { useDispatch } from "react-redux";
+import { forgotPassword } from "../../../../redux/auth";
 
 const StyledMailOutlineIcon = styleLoginIcon(MailOutlineIcon);
 
 export default function ForgotPassword(props) {
-  const { forgotPassword } = useAuth();
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [errors, setErrors] = useState(null);
 
@@ -25,7 +26,7 @@ export default function ForgotPassword(props) {
     e.preventDefault();
     setErrors(null);
     try {
-      await forgotPassword(email);
+      await dispatch(forgotPassword(email));
       props.history.push("/forgotPasswordCheckEmail");
     } catch (error) {
       setErrors(error.message ? error : { message: error });

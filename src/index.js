@@ -1,16 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 import App from "./components/App/App";
 import Styling from "./styling/Styling";
 import "./index.css";
-
-import { AuthProvider } from "./components/AuthLayer/useAuth";
+import store from "./redux/store";
+import AuthLayer from "./components/AuthLayer/AuthLayer";
 
 ReactDOM.render(
   <Styling>
-    <AuthProvider>
-      <App />
-    </AuthProvider>
+    <Provider store={store}>
+      <AuthLayer>
+        <App />
+      </AuthLayer>
+    </Provider>
   </Styling>,
   document.getElementById("root")
 );

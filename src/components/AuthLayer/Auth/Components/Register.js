@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import LockIcon from "@material-ui/icons/Lock";
 
-import { useAuth } from "../../AuthLayer/useAuth";
 import FormErrors from "./FormErrors";
 import PasswordCheck from "./PasswordCheck";
 
@@ -17,12 +16,14 @@ import {
   styleLoginIcon,
   Field,
 } from "../authStyle";
+import { useDispatch } from "react-redux";
+import { signUp } from "../../../../redux/auth";
 
 const StyledMailOutlineIcon = styleLoginIcon(MailOutlineIcon);
 const StyledLockIcon = styleLoginIcon(LockIcon);
 
 export default function Register({ history, setHeight }) {
-  const { signUp } = useAuth();
+  const dispatch = useDispatch();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -40,7 +41,7 @@ export default function Register({ history, setHeight }) {
 
     setSubmitted(true);
     try {
-      await signUp(username, password);
+      await dispatch(signUp(username, password));
     } catch (error) {
       setErrors(error.message ? error : { message: error });
       setSubmitted(false);

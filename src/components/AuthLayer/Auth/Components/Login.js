@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useAuth } from "../../AuthLayer/useAuth";
 
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import LockIcon from "@material-ui/icons/Lock";
@@ -15,12 +14,14 @@ import {
   StyledLink,
   styleLoginIcon,
 } from "../authStyle";
+import { useDispatch } from "react-redux";
+import { signIn } from "../../../../redux/auth";
 
 const StyledMailOutlineIcon = styleLoginIcon(MailOutlineIcon);
 const StyledLockIcon = styleLoginIcon(LockIcon);
 
 export default function Login({ setHeight, onSuccess }) {
-  const { signIn, setAuth } = useAuth();
+  const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState(null);
@@ -34,7 +35,7 @@ export default function Login({ setHeight, onSuccess }) {
     setErrors(null);
     // Amplify/Cognito
     try {
-      await signIn(username, password);
+      await dispatch(signIn(username, password));
       onSuccess(); //set animation
     } catch (error) {
       setErrors(error.message ? error : { message: error });

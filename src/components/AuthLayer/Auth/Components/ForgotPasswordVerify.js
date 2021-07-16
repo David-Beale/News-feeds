@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useAuth } from "../../AuthLayer/useAuth";
 
 import LockIcon from "@material-ui/icons/Lock";
 
@@ -14,16 +13,17 @@ import {
   Field,
   styleLoginIcon,
 } from "../authStyle";
+import { useDispatch } from "react-redux";
+import { confirmNewPassword } from "../../../../redux/auth";
 
 const StyledLockIcon = styleLoginIcon(LockIcon);
 
 export default function ForgotPasswordVerify({ history, setHeight }) {
+  const dispatch = useDispatch();
   const [verificationCode, setVerificationCode] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [errors, setErrors] = useState(null);
   const [submitEnabled, setSubmitEnabled] = useState(false);
-
-  const { confirmNewPassword } = useAuth();
 
   useEffect(() => {
     setHeight(540);
@@ -33,7 +33,7 @@ export default function ForgotPasswordVerify({ history, setHeight }) {
     e.preventDefault();
     setErrors(null);
     try {
-      await confirmNewPassword(verificationCode, newPassword);
+      await dispatch(confirmNewPassword(verificationCode, newPassword));
       history.push("/changePasswordConfirm");
     } catch (error) {
       setErrors(error.message ? error : { message: error });
