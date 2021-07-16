@@ -21,7 +21,6 @@ export const Backdrop = styled.div`
   justify-content: center;
 `;
 export const SubContainer = styled.div`
-  height: 350px;
   width: 400px;
   font-family: Arial;
   display: flex;
@@ -34,6 +33,7 @@ export const SubContainer = styled.div`
   overflow: hidden;
   position: relative;
   padding: 20px;
+  transition: 7500ms;
 `;
 export const Form = styled.div`
   width: 100%;
@@ -41,7 +41,7 @@ export const Form = styled.div`
   flex-direction: column;
   align-items: center;
 `;
-export const Field = styled.div`
+export const Field = styled.form`
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -88,4 +88,22 @@ export const Button = styled.button`
   font-weight: bold;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   box-shadow: 5px 5px 5px ${topShadow}, -5px -5px 5px ${bottomShadow};
+`;
+export const ErrorBox = styled.div`
+  height: 105px;
+  margin-bottom: 25px;
+  box-sizing: border-box;
+  background: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 25px;
+  width: 100%;
+  font-size: 14px;
+  padding: 10px 20px;
+  color: #d64958;
+  align-items: flex-start;
+  box-shadow: inset 8px 8px 8px ${topShadow},
+    inset -8px -8px 8px
+      ${(props) => (props.pass ? "hsl(146, 79%, 87%)" : "hsl(353, 92%, 90%)")};
 `;

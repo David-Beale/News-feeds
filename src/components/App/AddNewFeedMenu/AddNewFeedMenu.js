@@ -13,50 +13,41 @@ import {
   Input,
   Button,
   Title,
+  ErrorBox,
 } from "./AddNewFeedMenuStyle";
 
-import { disableAddFeed } from "../../../redux/addFeed";
+import { disableAddFeed, fetchWebsite } from "../../../redux/addFeed";
+
 export default function AddNewFeedMenu() {
   const dispatch = useDispatch();
   const enabled = useSelector(({ addFeed }) => addFeed.enabled);
-  const [webName, setWebName] = useState("");
-  const [webLink, setWebLink] = useState("");
+  const [name, setName] = useState("");
+  const [url, setUrl] = useState("");
+  const [error, setError] = useState(false);
   const [submitEnabled, setSubmitEnabled] = useState(false);
 
-  const handleSubmit = (event) => {
-    //   event.preventDefault();
-    //   // eslint-disable-next-line no-useless-escape
-    //   const regex = "^(?:https?://)?(?:[^@/\n]+@)?(?:www.)?([^:/?\n]+)";
-    //   let localLink = webLink;
-    //   if (webLink[0] === "w" && webLink[1] === "w" && webLink[2] === "w") {
-    //     setWebLink("https://" + webLink);
-    //     localLink = "https://" + webLink;
-    //   } else if (
-    //     webLink[0] !== "w" &&
-    //     webLink[1] !== "w" &&
-    //     webLink[2] !== "w" &&
-    //     webLink[0] !== "h" &&
-    //     webLink[1] !== "t" &&
-    //     webLink[2] !== "t"
-    //   ) {
-    //     setWebLink("https://www." + webLink);
-    //     localLink = "https://www." + webLink;
-    //   }
-    //   setConcatWebLink(localLink.match(regex)[0]);
-    //   Api.getWebsite(localLink).then((result) => {
-    //     setWebsite(result.data.html.htmlBody);
-    //   });
-    //   setShowForm(false);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitEnabled(false);
+    document.body.style.cursor = "wait";
+    const error = await dispatch(fetchWebsite(url));
+    document.body.style.cursor = "";
+    if (error) {
+      setError(error);
+    } else {
+      dispatch(disableAddFeed());
+    }
   };
   const handleAddressChange = (event) => {
-    setWebLink(event.target.value);
-    setSubmitEnabled(webLink && webName ? true : false);
+    setUrl(event.target.value);
+    setSubmitEnabled(url && name ? true : false);
   };
   const handleNameChange = (event) => {
-    setWebName(event.target.value);
-    setSubmitEnabled(webLink && webName ? true : false);
+    setName(event.target.value);
+    setSubmitEnabled(url && name ? true : false);
   };
-  const handleCancel = () => {
+  const handleCancel = (e) => {
+    e.preventDefault();
     dispatch(disableAddFeed());
   };
   const stopPropagation = (e) => {
@@ -68,6 +59,7 @@ export default function AddNewFeedMenu() {
         <Backdrop onClick={handleCancel}>
           <SubContainer onClick={stopPropagation}>
             <Title>Add New Feed</Title>
+            {error && <ErrorBox>{error}</ErrorBox>}
             <Form onSubmit={handleSubmit}>
               <InputField>
                 <InsertLinkIcon fontSize="large" />
@@ -76,7 +68,7 @@ export default function AddNewFeedMenu() {
                   type="text"
                   id="link"
                   placeholder="Enter target address"
-                  value={webLink}
+                  value={url}
                   onChange={handleAddressChange}
                   required={true}
                 />
@@ -88,7 +80,7 @@ export default function AddNewFeedMenu() {
                   type="text"
                   id="name"
                   placeholder="Choose a name for this feed"
-                  value={webName}
+                  value={name}
                   onChange={handleNameChange}
                   required={true}
                 />
@@ -99,42 +91,6 @@ export default function AddNewFeedMenu() {
               </Field>
             </Form>
           </SubContainer>
-
-          {/* <div className="add-feed__container">
-            <form
-              id="form"
-              className="first-form"
-              onSubmit={handleSubmit}
-              autoComplete="new-password"
-            >
-              <label htmlFor="httpAddress">Web Address:</label>
-              <input
-                autoComplete="off"
-                type="text"
-                id="httpAddress"
-                placeholder="Enter a web address..."
-                onChange={handleAddressChange}
-                value={webLink}
-              ></input>
-              <label htmlFor="name">Custom scraper name:</label>
-              <input
-                autoComplete="off"
-                type="text"
-                id="name"
-                placeholder="Enter a name (e.g. BBC Most Read No.1)..."
-                onChange={handleNameChange}
-                value={webName}
-              ></input>
-              <div>
-                <button className="addbutton" type="submit">
-                  Submit
-                </button>
-                <button className="" onClick={handleCancel}>
-                  Cancel
-                </button>
-              </div>
-            </form>
-          </div> */}
         </Backdrop>
       )}
     </>

@@ -16,7 +16,7 @@ export default function AuthLayer({ children }) {
   useEffect(() => {
     const unsubscribe = authApi.onAuthStateChanged((user) => {
       setLoading(false);
-      dispatch(setUser(user.uid));
+      dispatch(setUser(user?.uid));
 
       if (init.current && user) {
         //timeout to allow for animation
