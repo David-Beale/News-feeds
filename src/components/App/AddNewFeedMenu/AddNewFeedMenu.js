@@ -14,9 +14,12 @@ import {
   Button,
   Title,
   ErrorBox,
+  styleIcon,
 } from "./AddNewFeedMenuStyle";
 
 import { disableAddFeed, fetchWebsite } from "../../../redux/addFeed";
+const StyledInsertLinkIcon = styleIcon(InsertLinkIcon);
+const StyledBookmarkIcon = styleIcon(BookmarkIcon);
 
 export default function AddNewFeedMenu() {
   const dispatch = useDispatch();
@@ -62,7 +65,7 @@ export default function AddNewFeedMenu() {
             {error && <ErrorBox>{error}</ErrorBox>}
             <Form onSubmit={handleSubmit}>
               <InputField>
-                <InsertLinkIcon fontSize="large" />
+                <StyledInsertLinkIcon fontSize="large" />
                 <Input
                   autoComplete="off"
                   type="text"
@@ -74,7 +77,7 @@ export default function AddNewFeedMenu() {
                 />
               </InputField>
               <InputField>
-                <BookmarkIcon fontSize="large" />
+                <StyledBookmarkIcon fontSize="large" />
                 <Input
                   autoComplete="off"
                   type="text"

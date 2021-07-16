@@ -90,9 +90,9 @@ export const Button = styled.button`
   box-shadow: 5px 5px 5px ${topShadow}, -5px -5px 5px ${bottomShadow};
 `;
 export const ErrorBox = styled.div`
-  height: 105px;
+  padding: 15px 10px 15px 20px;
+  height: 65px;
   margin-bottom: 25px;
-  box-sizing: border-box;
   background: none;
   display: flex;
   flex-direction: column;
@@ -100,10 +100,16 @@ export const ErrorBox = styled.div`
   border-radius: 25px;
   width: 100%;
   font-size: 14px;
-  padding: 10px 20px;
+  font-weight: 600;
   color: #d64958;
   align-items: flex-start;
   box-shadow: inset 8px 8px 8px ${topShadow},
     inset -8px -8px 8px
       ${(props) => (props.pass ? "hsl(146, 79%, 87%)" : "hsl(353, 92%, 90%)")};
 `;
+export const styleIcon = (Component) => {
+  return styled(Component)`
+    margin: 0 10px;
+    color: ${color};
+  `;
+};
