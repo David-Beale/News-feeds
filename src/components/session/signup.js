@@ -3,7 +3,7 @@ import ErrorMessage from "./ErrorMessage";
 import SuccessMessage from "./SuccessMessage";
 import { Link } from "react-router-dom";
 import "../../styles/signup-form.css";
-import Api from "../../api-client";
+import Api from "../../api/api-client";
 import logo from "../../assets/icon.png";
 
 class SignUp extends Component {

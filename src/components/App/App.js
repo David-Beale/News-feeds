@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-// import './App.css';
-import HeadlineList from "./components/headline-list/headline-list";
-import Api from "./api-client";
+import HeadlineList from "../headline-list/headline-list";
+import Api from "../../api/api-client";
 import renderHTML from "react-render-html";
 import DatePicker from "react-date-picker";
 import { Button } from "@material-ui/core";
 import Draggable from "react-draggable";
+import { useAuth } from "../AuthLayer/useAuth";
 
-import logoPath from "./assets/icon.png";
+import logoPath from "../../assets/icon.png";
 let date = new Date().getDate();
 let month = new Date().getMonth() + 1;
 let year = new Date().getFullYear();
@@ -362,11 +362,14 @@ function App(props) {
     setDeleteScraper(!deleteScraper);
     setIsActiveStatusScraper(!isActiveLocal);
   };
-  const logout = () => {
-    Api.logout().then((data) => {
-      props.setUser(false);
-      props.setisAuth(false);
-    });
+
+  const { signOut } = useAuth();
+  const onSignOut = () => {
+    try {
+      signOut();
+    } catch (error) {
+      console.log("failed to logout");
+    }
   };
 
   return (
@@ -429,7 +432,7 @@ function App(props) {
             <Button
               size="small"
               variant="contained"
-              onClick={logout}
+              onClick={onSignOut}
               className={`appbar__button`}
             >
               Logout

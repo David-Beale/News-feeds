@@ -21,7 +21,15 @@ body {
   margin: 0;
   padding: 0;
   width: 100vw;
-  background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+  background-color: #ecf0f3;
+  /* background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%); */
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #ecf0f3 inset !important;
+  -webkit-text-fill-color: rgb(10, 144, 197) !important;
 }
 a {
   text-decoration: none;

@@ -3,7 +3,7 @@ import ErrorMessage from "./login-error";
 import { Link } from "react-router-dom";
 import logo from "../../assets/icon.png";
 import "../../styles/login-form.css";
-import Api from "../../api-client";
+import Api from "../../api/api-client";
 
 function Login(props) {
   const [email, setEmail] = useState("");

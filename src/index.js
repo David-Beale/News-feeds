@@ -1,7 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import App from "./components/App/App";
+import Styling from "./styling/Styling";
 import "./index.css";
 
-import AuthRouter from "./auth-router";
+import { AuthProvider } from "./components/AuthLayer/useAuth";
 
-ReactDOM.render(<AuthRouter />, document.getElementById("root"));
+ReactDOM.render(
+  <Styling>
+    <AuthProvider>
+      <App />
+    </AuthProvider>
+  </Styling>,
+  document.getElementById("root")
+);
