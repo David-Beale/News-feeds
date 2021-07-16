@@ -59,8 +59,8 @@ export default function AddNewFeedMenu() {
   return (
     <>
       {enabled && (
-        <Backdrop onClick={handleCancel}>
-          <SubContainer onClick={stopPropagation}>
+        <Backdrop onPointerDown={handleCancel}>
+          <SubContainer onPointerDown={stopPropagation}>
             <Title>Add New Feed</Title>
             {error && <ErrorBox>{error}</ErrorBox>}
             <Form onSubmit={handleSubmit}>
@@ -89,8 +89,8 @@ export default function AddNewFeedMenu() {
                 />
               </InputField>
               <Field>
-                <Button disabled={!submitEnabled}>Submit</Button>
                 <Button onClick={handleCancel}>Cancel</Button>
+                <Button disabled={!submitEnabled}>Submit</Button>
               </Field>
             </Form>
           </SubContainer>

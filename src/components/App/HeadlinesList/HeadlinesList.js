@@ -1,14 +1,18 @@
 import React from "react";
 import Headline from "./headline/headline";
 import { CircularProgress } from "@material-ui/core";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getHeadlines } from "../../../redux/headlines";
 
-export default ({
-  headlines,
-  deleteHeadline,
-  deleteScraper,
-  isActiveStatus,
-  isActiveStatusScraper,
-}) => {
+export default function HeadlinesList() {
+  const dispatch = useDispatch();
+  const headlines = useSelector(({ headlines }) => headlines.headlines);
+
+  useEffect(() => {
+    dispatch(getHeadlines());
+  }, [dispatch]);
+
   return (
     <div className="list__container">
       {!headlines ? (
@@ -19,18 +23,9 @@ export default ({
         </div>
       ) : (
         headlines.map((headline) => {
-          return (
-            <Headline
-              key={headline.id}
-              headline={headline}
-              deleteHeadline={deleteHeadline}
-              deleteScraper={deleteScraper}
-              isActiveStatus={isActiveStatus}
-              isActiveStatusScraper={isActiveStatusScraper}
-            />
-          );
+          return <Headline key={headline.id} headline={headline} />;
         })
       )}
     </div>
   );
-};
+}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import HeadlineList from "./headline-list/headline-list";
+import HeadlinesList from "./HeadlinesList/HeadlinesList";
 import Api from "../../api/api-client";
 import renderHTML from "react-render-html";
 
@@ -287,6 +287,7 @@ function App() {
     <div className="app__container">
       <Header />
       <AddNewFeedMenu />
+      <HeadlinesList />
       {/* {show && (
           <HeadlineList
             headlines={headlines}
