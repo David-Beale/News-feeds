@@ -15,6 +15,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.test {
+  color: hsl(197, 90%, 41%);
+}
 /* ------GENERAL Elements------ */
 body {
   min-height: 100vh;
@@ -62,17 +65,6 @@ a {
 .app__container {
   min-height: 95vh;
   margin-bottom: 2rem;
-}
-
-.appbar {
-  background-color: #90caf9;
-  width: 100%;
-  z-index: 99;
-  border-bottom: 2px rgb(146, 146, 146) groove;
-  box-shadow: 0px 10px 14px rgba(0, 0, 0, 0.12);
-  display: flex;
-  justify-content: space-between;
-  height: 4rem;
 }
 
 .logo {
