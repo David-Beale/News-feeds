@@ -9,7 +9,7 @@ export default function Header() {
   return (
     <HeaderContainer>
       <AddNewFeedButton />
-      <RefreshFeedButton />
+      {/* <RefreshFeedButton /> */}
       <SignOutButton />
     </HeaderContainer>
   );

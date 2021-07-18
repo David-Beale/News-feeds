@@ -5,6 +5,7 @@ export const initialState = {
   enabled: false,
   domain: "",
   html: "",
+  showHtml: false,
 };
 const addFeed = createSlice({
   name: "addFeed",
@@ -21,11 +22,16 @@ const addFeed = createSlice({
     },
     setHtml(state, action) {
       state.html = action.payload;
+      state.showHtml = true;
+    },
+    removeHtml(state) {
+      state.html = "action.payload";
+      state.showHtml = false;
     },
   },
 });
 
-export const { enableAddFeed, disableAddFeed, setDomain, setHtml } =
+export const { enableAddFeed, disableAddFeed, setDomain, setHtml, removeHtml } =
   addFeed.actions;
 
 export default addFeed.reducer;

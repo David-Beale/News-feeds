@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import InsertLinkIcon from "@material-ui/icons/InsertLink";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
+import { CircularProgress } from "@material-ui/core";
 
 import {
   Backdrop,
@@ -15,6 +16,7 @@ import {
   Title,
   ErrorBox,
   styleIcon,
+  MessageContainer,
 } from "./AddNewFeedMenuStyle";
 
 import { disableAddFeed, fetchWebsite } from "../../../redux/addFeed";
@@ -28,13 +30,19 @@ export default function AddNewFeedMenu() {
   const [url, setUrl] = useState("");
   const [error, setError] = useState(false);
   const [submitEnabled, setSubmitEnabled] = useState(false);
+  const [addedHeight, setAddedHeight] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitEnabled(false);
-    document.body.style.cursor = "wait";
+    setLoading(true);
+    //timeout needed for animation
+    setTimeout(() => {
+      setAddedHeight(100);
+    }, 10);
     const error = await dispatch(fetchWebsite(url));
-    document.body.style.cursor = "";
+    setLoading(false);
     if (error) {
       setError(error);
     } else {
@@ -60,9 +68,12 @@ export default function AddNewFeedMenu() {
     <>
       {enabled && (
         <Backdrop onPointerDown={handleCancel}>
-          <SubContainer onPointerDown={stopPropagation}>
+          <SubContainer
+            addedHeight={addedHeight}
+            onPointerDown={stopPropagation}
+          >
             <Title>Add New Feed</Title>
-            {error && <ErrorBox>{error}</ErrorBox>}
+
             <Form onSubmit={handleSubmit}>
               <InputField>
                 <StyledInsertLinkIcon fontSize="large" />
@@ -88,6 +99,10 @@ export default function AddNewFeedMenu() {
                   required={true}
                 />
               </InputField>
+              <MessageContainer height={addedHeight}>
+                {loading && <CircularProgress size={70} />}
+                {error && <ErrorBox>{error}</ErrorBox>}
+              </MessageContainer>
               <Field>
                 <Button onClick={handleCancel}>Cancel</Button>
                 <Button disabled={!submitEnabled}>Submit</Button>

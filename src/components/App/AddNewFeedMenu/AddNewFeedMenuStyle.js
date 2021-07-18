@@ -22,11 +22,12 @@ export const Backdrop = styled.div`
   z-index: 99;
 `;
 export const SubContainer = styled.div`
+  height: ${(props) => 390 + props.addedHeight}px;
   width: 400px;
   font-family: Arial;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   background: #ecf0f3;
   border-radius: 40px;
@@ -34,7 +35,7 @@ export const SubContainer = styled.div`
   overflow: hidden;
   position: relative;
   padding: 20px;
-  transition: 7500ms;
+  transition: 200ms;
 `;
 export const Form = styled.div`
   width: 100%;
@@ -92,8 +93,8 @@ export const Button = styled.button`
 `;
 export const ErrorBox = styled.div`
   padding: 15px 10px 15px 20px;
-  height: 65px;
-  margin-bottom: 25px;
+  height: 90px;
+  margin: 5px 0;
   background: none;
   display: flex;
   flex-direction: column;
@@ -105,8 +106,7 @@ export const ErrorBox = styled.div`
   color: #d64958;
   align-items: flex-start;
   box-shadow: inset 8px 8px 8px ${topShadow},
-    inset -8px -8px 8px
-      ${(props) => (props.pass ? "hsl(146, 79%, 87%)" : "hsl(353, 92%, 90%)")};
+    inset -8px -8px 8px hsl(353, 92%, 90%);
 `;
 export const styleIcon = (Component) => {
   return styled(Component)`
@@ -114,3 +114,11 @@ export const styleIcon = (Component) => {
     color: ${color};
   `;
 };
+export const MessageContainer = styled.div`
+  height: ${(props) => props.height}px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 200ms;
+`;

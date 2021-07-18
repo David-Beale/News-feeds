@@ -4,7 +4,9 @@ import { IconButton } from "@material-ui/core";
 const topShadow = "#cbced1";
 
 export const HeaderContainer = styled.div`
-  position: relative;
+  position: fixed;
+  top: 0;
+  z-index: 1;
   width: 100%;
   padding: 10px;
   background-color: #ecf0f3;

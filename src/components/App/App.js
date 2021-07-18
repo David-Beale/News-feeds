@@ -183,7 +183,7 @@ function App() {
   // }
 
   return (
-    <div className="app__container">
+    <>
       <Header />
       <AddNewFeedMenu />
       <SiteBody />
@@ -208,7 +208,7 @@ function App() {
             )}
           </div>
         )} */}
-    </div>
+    </>
   );
 }
 

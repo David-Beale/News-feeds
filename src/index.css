@@ -37,7 +37,7 @@ input:-webkit-autofill:active {
 a {
   text-decoration: none;
 }
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
@@ -49,7 +49,7 @@ a {
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
-}
+} */
 .danger {
   background-color: #e57373 !important;
 }
@@ -128,9 +128,10 @@ a {
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
-  height: 80%;
+  min-height: 90vh;
   position: relative;
   z-index: 1;
+  /* background-color: #90caf9; */
 }
 
 /* ---------Headline--------- */
@@ -191,12 +192,7 @@ a {
 .action-buttons__container button {
   margin: 2px;
 }
-.external {
-  border-top: dotted thick black;
-  margin: 12px;
-  padding: 24px;
-  z-index: -99;
-}
+
 .form2Head {
   cursor: move;
   width: 100%;
