@@ -1,5 +1,5 @@
 import React from "react";
-import Api from "../../../../api/api-client";
+import Api from "../../../../../api/api-client";
 import { Card, CardMedia, CardContent, Typography } from "@material-ui/core";
 import DeleteForever from "@material-ui/icons/DeleteForever";
 

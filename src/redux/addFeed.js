@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { functionsApi } from "../api/firebase";
 
 export const initialState = {
   enabled: false,
   domain: "",
+  html: "",
 };
 const addFeed = createSlice({
   name: "addFeed",
@@ -17,10 +19,14 @@ const addFeed = createSlice({
     setDomain(state, action) {
       state.domain = action.payload;
     },
+    setHtml(state, action) {
+      state.html = action.payload;
+    },
   },
 });
 
-export const { enableAddFeed, disableAddFeed, setDomain } = addFeed.actions;
+export const { enableAddFeed, disableAddFeed, setDomain, setHtml } =
+  addFeed.actions;
 
 export default addFeed.reducer;
 
@@ -39,19 +45,17 @@ const formatUrl = (url) => {
   return newUrl;
 };
 
-function timeout(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+const getHtml = functionsApi.httpsCallable("getHTML");
 
 export const fetchWebsite = (url) => async (dispatch) => {
   const newUrl = formatUrl(url);
   const domain = getDomain(newUrl);
   dispatch(setDomain(domain));
-  await timeout(2000);
-  // return "error";
-  // const {error, res} =await Api.getWebsite(newUrl).then((result) => {
-  //   setWebsite(result.data.html.htmlBody);
-  // });
 
-  // return error
+  try {
+    const result = await getHtml({ link: url });
+    dispatch(setHtml(result.data.htmlBody));
+  } catch (error) {
+    return error;
+  }
 };

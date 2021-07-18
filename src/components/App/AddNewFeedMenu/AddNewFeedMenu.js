@@ -70,7 +70,7 @@ export default function AddNewFeedMenu() {
                   autoComplete="off"
                   type="text"
                   id="link"
-                  placeholder="Enter target address"
+                  placeholder="Enter target url"
                   value={url}
                   onChange={handleAddressChange}
                   required={true}

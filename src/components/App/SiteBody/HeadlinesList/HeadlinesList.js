@@ -1,17 +1,13 @@
 import React from "react";
 import Headline from "./headline/headline";
 import { CircularProgress } from "@material-ui/core";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getHeadlines } from "../../../redux/headlines";
+import { useSelector } from "react-redux";
+import { useHeadlines } from "./useHeadlines";
 
 export default function HeadlinesList() {
-  const dispatch = useDispatch();
   const headlines = useSelector(({ headlines }) => headlines.headlines);
 
-  useEffect(() => {
-    dispatch(getHeadlines());
-  }, [dispatch]);
+  useHeadlines();
 
   return (
     <div className="list__container">

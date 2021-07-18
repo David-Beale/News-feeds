@@ -1,7 +1,9 @@
 import firebase from "firebase/app";
 import "firebase/auth";
+import "firebase/firestore";
+import "firebase/functions";
 
-const app = firebase.initializeApp({
+firebase.initializeApp({
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
   projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
@@ -11,6 +13,8 @@ const app = firebase.initializeApp({
   measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 });
 
-export default app;
+export const authApi = firebase.auth();
+export const dbApi = firebase.firestore();
+export const functionsApi = firebase.functions();
 
-export const authApi = app.auth();
+functionsApi.useEmulator("localhost", 5001);
