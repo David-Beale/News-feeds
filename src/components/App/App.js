@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import Api from "../../api/api-client";
 
-import Draggable from "react-draggable";
-
 import Header from "./Header/Header";
-import AddNewFeedMenu from "./AddNewFeedMenu/AddNewFeedMenu";
+import NewFeedMenus from "./NewFeed/NewFeedMenus";
 import SiteBody from "./SiteBody/SiteBody";
 
 let date = new Date().getDate();
@@ -53,75 +51,6 @@ function App() {
   //     });
   // }, []);
   // ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-  // function deepSearch() {
-  //   let currentNode = selectedNode.parentNode;
-  //   let localArrayOfOptions = [];
-  //   let localArrayOfNodes = [];
-  //   let localArrayOfTags = [];
-
-  //   function search(currentNode) {
-  //     if (
-  //       status <= 2 &&
-  //       currentNode.innerText &&
-  //       currentNode.innerText.trim().length > 5
-  //     ) {
-  //       localArrayOfOptions.push(currentNode.innerText.trim());
-  //       localArrayOfNodes.push(currentNode);
-  //     } else if (status === 3) {
-  //       if (
-  //         currentNode.getAttribute("src") &&
-  //         currentNode.getAttribute("src")[0] === "h"
-  //       ) {
-  //         localArrayOfOptions.push(currentNode.getAttribute("src"));
-  //         localArrayOfTags.push("src");
-
-  //         localArrayOfNodes.push(currentNode);
-  //       }
-  //       if (
-  //         currentNode.getAttribute("data-src") &&
-  //         currentNode.getAttribute("data-src")[0] === "h"
-  //       ) {
-  //         localArrayOfOptions.push(currentNode.getAttribute("data-src"));
-  //         localArrayOfTags.push("data-src");
-  //         localArrayOfNodes.push(currentNode);
-  //       }
-  //       if (
-  //         currentNode.getAttribute("srcset") &&
-  //         currentNode.getAttribute("srcset")[0] === "h"
-  //       ) {
-  //         localArrayOfOptions.push(currentNode.getAttribute("srcset"));
-  //         localArrayOfTags.push("srcset");
-  //         localArrayOfNodes.push(currentNode);
-  //       }
-  //       if (
-  //         currentNode.getAttribute("data-src-md") &&
-  //         currentNode.getAttribute("data-src-md")[0] === "h"
-  //       ) {
-  //         localArrayOfOptions.push(currentNode.getAttribute("data-src-md"));
-  //         localArrayOfTags.push("data-src-md");
-  //         localArrayOfNodes.push(currentNode);
-  //       }
-  //     } else if (status === 4 && currentNode.href) {
-  //       if (currentNode.href[7] === "l")
-  //         localArrayOfOptions.push(concatWebLink + currentNode.href.slice(21));
-  //       else localArrayOfOptions.push(currentNode.href);
-
-  //       localArrayOfNodes.push(currentNode);
-  //     }
-  //     for (let i = 0; i < currentNode.children.length; i++) {
-  //       search(currentNode.children[i]);
-  //     }
-  //   }
-  //   search(currentNode);
-  //   if (!localArrayOfOptions.length) alert("sorry no options available");
-  //   else {
-  //     setArrayOfOptions(localArrayOfOptions);
-  //     setArrayOfNodes(localArrayOfNodes);
-  //     setArrayOfTags(localArrayOfTags);
-  //     setShowOptions(true);
-  //   }
-  // }
 
   // function changeStatus() {
   //   if (status <= 4) {
@@ -185,7 +114,8 @@ function App() {
   return (
     <>
       <Header />
-      <AddNewFeedMenu />
+      <NewFeedMenus />
+
       <SiteBody />
       {/* {show && (
           <HeadlineList

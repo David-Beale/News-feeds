@@ -2,37 +2,82 @@ import { createSlice } from "@reduxjs/toolkit";
 import { functionsApi } from "../api/firebase";
 
 export const initialState = {
-  enabled: false,
+  menu: null,
+  showHtml: false,
   domain: "",
   html: "",
-  showHtml: false,
+  previewData: {},
+  selectors: {},
+  selectedNode: "",
+  name: "",
+  status: 1,
 };
+
 const addFeed = createSlice({
   name: "addFeed",
   initialState,
   reducers: {
     enableAddFeed(state) {
-      state.enabled = true;
+      state.menu = "start";
     },
     disableAddFeed(state) {
-      state.enabled = false;
+      state.menu = null;
     },
     setDomain(state, action) {
       state.domain = action.payload;
+    },
+    setName(state, action) {
+      state.name = action.payload;
     },
     setHtml(state, action) {
       state.html = action.payload;
       state.showHtml = true;
     },
     removeHtml(state) {
-      state.html = "action.payload";
-      state.showHtml = false;
+      Object.keys(state).forEach((key) => (state[key] = initialState[key]));
+    },
+    setPreviewData(state, action) {
+      state.previewData = { ...state.previewData, ...action.payload };
+    },
+    setSelectors(state, action) {
+      state.selectors = { ...state.selectors, ...action.payload };
+    },
+    setOptions(state, action) {
+      state.options = action.payload;
+      state.menu = "options";
+    },
+
+    clearOptions(state) {
+      state.options = [];
+      state.menu = null;
+    },
+    setStatus(state, action) {
+      state.status = action.payload;
+    },
+    prevStatus(state) {
+      state.status -= 1;
+    },
+    enabledPreview(state) {
+      state.menu = "preview";
     },
   },
 });
 
-export const { enableAddFeed, disableAddFeed, setDomain, setHtml, removeHtml } =
-  addFeed.actions;
+export const {
+  enableAddFeed,
+  disableAddFeed,
+  setDomain,
+  setName,
+  setHtml,
+  removeHtml,
+  setPreviewData,
+  setSelectors,
+  setOptions,
+  clearOptions,
+  setStatus,
+  prevStatus,
+  enabledPreview,
+} = addFeed.actions;
 
 export default addFeed.reducer;
 
@@ -53,10 +98,11 @@ const formatUrl = (url) => {
 
 const getHtml = functionsApi.httpsCallable("getHTML");
 
-export const fetchWebsite = (url) => async (dispatch) => {
+export const fetchWebsite = (url, name) => async (dispatch) => {
   const newUrl = formatUrl(url);
   const domain = getDomain(newUrl);
   dispatch(setDomain(domain));
+  dispatch(setName(name));
 
   try {
     const result = await getHtml({ link: url });
@@ -64,4 +110,16 @@ export const fetchWebsite = (url) => async (dispatch) => {
   } catch (error) {
     return error;
   }
+};
+
+export const selectOption = (option) => async (dispatch) => {
+  dispatch(setPreviewData({ [option.type]: option.data }));
+  dispatch(setSelectors({ [option.type]: option.path }));
+  dispatch(clearOptions());
+  dispatch(nextStatus());
+};
+export const nextStatus = () => async (dispatch, getState) => {
+  const currentStatus = getState().addFeed.status;
+  if (currentStatus < 4) dispatch(setStatus(currentStatus + 1));
+  else dispatch(enabledPreview());
 };

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import renderHTML from "react-render-html";
 import { useSelector } from "react-redux";
 
-import { useOnClick } from "./useOnClick";
+import { useSearchNodes } from "./useSearchNodes";
 
 const ExternalSiteContainer = styled.div`
   margin: 36px;
@@ -12,7 +12,7 @@ const ExternalSiteContainer = styled.div`
 export default function ExternalSite() {
   const html = useSelector(({ addFeed }) => addFeed.html);
 
-  const onClick = useOnClick();
+  const onClick = useSearchNodes();
 
   return (
     <ExternalSiteContainer id="externalMaster" onClick={onClick}>

@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Tooltip } from "@material-ui/core";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 
@@ -8,14 +8,14 @@ import { StyledIconButton } from "../../HeaderStyle";
 
 export default function AddNewFeedButton() {
   const dispatch = useDispatch();
-  const enabled = useSelector(({ addFeed }) => addFeed.enabled);
 
-  const onClick = () => {
-    dispatch(enableAddFeed(enabled));
+  const enable = () => {
+    dispatch(enableAddFeed());
   };
+
   return (
     <Tooltip title="Add new feed">
-      <StyledIconButton enabled={enabled ? 1 : 0} onClick={onClick}>
+      <StyledIconButton onClick={enable}>
         <AddCircleOutlineIcon fontSize="large" />
       </StyledIconButton>
     </Tooltip>

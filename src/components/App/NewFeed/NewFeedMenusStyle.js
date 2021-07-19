@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { IconButton } from "@material-ui/core";
 
 const color = "rgb(10, 144, 197)";
 const topShadow = "#cbced1";
@@ -12,8 +13,8 @@ export const Backdrop = styled.div`
   width: 100vw;
   background: linear-gradient(
     to right bottom,
-    rgba(255, 255, 255, 0.5),
-    rgba(255, 255, 255, 0.2)
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.9)
   );
   backdrop-filter: blur(1rem);
   display: flex;
@@ -121,4 +122,40 @@ export const MessageContainer = styled.div`
   align-items: center;
   justify-content: center;
   transition: 200ms;
+`;
+export const Warning = styled.div`
+  position: relative;
+  top: -25px;
+  color: red;
+`;
+export const OptionsBody = styled.div`
+  height: 300px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+export const OptionNum = styled.div`
+  position: relative;
+  top: -25px;
+  color: ${color};
+  font-weight: 600;
+`;
+export const Image = styled.img`
+  max-height: 250px;
+  max-width: 250px;
+`;
+export const Text = styled.div`
+  text-align: justify;
+  padding: 10px;
+  color: ${color};
+  overflow-wrap: break-word;
+  max-height: 250px;
+  width: 250px;
+  overflow-y: auto;
+`;
+export const StyledNavButton = styled(IconButton)`
+  border-radius: 10px;
+  box-shadow: unset;
+  height: 300px;
 `;

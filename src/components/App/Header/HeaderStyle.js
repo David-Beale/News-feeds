@@ -25,3 +25,7 @@ export const StyledIconButton = styled(IconButton)`
       ? "inset -4px -4px 8px rgba(255, 255, 255, 0.6), inset 8px 8px 16px rgba(0, 0, 0, 0.2)"
       : "-6px -6px 10px rgba(255, 255, 255, 0.7), 6px 6px 10px rgba(0, 0, 0, 0.3)"};
 `;
+export const AlignLeftContainer = styled.div`
+  position: absolute;
+  left: 15px;
+`;

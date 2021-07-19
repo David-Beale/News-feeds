@@ -6,9 +6,9 @@ import ExternalSite from "./ExternalSite/ExternalSite";
 
 const SiteBodyContainer = styled.div`
   padding-top: 75px;
-  height: 100vh;
   position: relative;
   z-index: 0;
+  overflow: scroll;
 `;
 
 export default function SiteBody() {
