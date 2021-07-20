@@ -20,7 +20,7 @@ import {
   Warning,
 } from "../NewFeedMenusStyle";
 
-import { disableAddFeed, fetchWebsite } from "../../../../redux/addFeed";
+import { onCancel, fetchWebsite } from "../../../../redux/addFeed";
 const StyledInsertLinkIcon = styleIcon(InsertLinkIcon);
 const StyledBookmarkIcon = styleIcon(BookmarkIcon);
 
@@ -48,7 +48,7 @@ export default function NewFeedStartMenu() {
     if (error) {
       setError("Error loading target url");
     } else {
-      dispatch(disableAddFeed());
+      dispatch(onCancel());
     }
   };
   const handleAddressChange = (event) => {
@@ -61,7 +61,7 @@ export default function NewFeedStartMenu() {
   };
   const handleCancel = (e) => {
     e.preventDefault();
-    dispatch(disableAddFeed());
+    dispatch(onCancel());
   };
   const stopPropagation = (e) => {
     e.stopPropagation();

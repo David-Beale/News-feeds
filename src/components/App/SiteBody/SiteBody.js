@@ -8,7 +8,7 @@ const SiteBodyContainer = styled.div`
   padding-top: 75px;
   position: relative;
   z-index: 0;
-  overflow: scroll;
+  overflow-y: scroll;
 `;
 
 export default function SiteBody() {

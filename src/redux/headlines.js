@@ -1,18 +1,26 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
 
-export const initialState = {
-  headlines: [],
-};
+const headlinesAdapter = createEntityAdapter();
+
+export const initialState = headlinesAdapter.getInitialState({
+  loading: true,
+});
+
 const headlines = createSlice({
   name: "headlines",
   initialState,
   reducers: {
-    setHeadlines(state, action) {
-      state.headlines = action.payload;
+    addHeadline(state, action) {
+      state.loading = false;
+      headlinesAdapter.upsertOne(state, action.payload);
     },
   },
 });
 
-export const { setHeadlines } = headlines.actions;
+export const { addHeadline, noHeadlines } = headlines.actions;
+
+export const { selectAll: selectAllHeadlines } = headlinesAdapter.getSelectors(
+  (state) => state.headlines
+);
 
 export default headlines.reducer;

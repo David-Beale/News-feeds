@@ -1,9 +1,6 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearOptions, selectOption } from "../../../../redux/addFeed";
-
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import { onCancel } from "../../../../redux/addFeed";
 
 import {
   Backdrop,
@@ -18,22 +15,28 @@ import {
   OptionNum,
 } from "../NewFeedMenusStyle";
 
+import Card from "../../SiteBody/HeadlinesList/headline/Card";
 export default function NewFeedPreview() {
   const previewData = useSelector(({ addFeed }) => addFeed.previewData);
   const dispatch = useDispatch();
 
   const handleCancel = () => {
-    dispatch(clearOptions());
+    dispatch(onCancel());
   };
   const stopPropagation = (e) => {
     e.stopPropagation();
   };
-  console.log(previewData);
+
   return (
     <Backdrop onPointerDown={handleCancel}>
-      <SubContainer onPointerDown={stopPropagation}>
-        <Title>Preview</Title>
-      </SubContainer>
+      <Title>Preview</Title>
+      <div onPointerDown={stopPropagation}>
+        <Card headline={previewData} />
+      </div>
+      <Field>
+        <Button onClick={handleCancel}>Cancel</Button>
+        <Button>Submit</Button>
+      </Field>
     </Backdrop>
   );
 }

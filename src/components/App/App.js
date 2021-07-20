@@ -6,9 +6,9 @@ import Header from "./Header/Header";
 import NewFeedMenus from "./NewFeed/NewFeedMenus";
 import SiteBody from "./SiteBody/SiteBody";
 
-let date = new Date().getDate();
-let month = new Date().getMonth() + 1;
-let year = new Date().getFullYear();
+// let date = new Date().getDate();
+// let month = new Date().getMonth() + 1;
+// let year = new Date().getFullYear();
 
 function App() {
   // const [headlines, setHeadlines] = useState([]);

@@ -1,27 +1,29 @@
 import React from "react";
-import Headline from "./headline/headline";
+import Card from "./headline/Card";
 import { CircularProgress } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import { useHeadlines } from "./useHeadlines";
 
+import { ListContainer, NoContent } from "./HeadlinesListStyle";
+import { selectAllHeadlines } from "../../../../redux/headlines";
+
 export default function HeadlinesList() {
-  const headlines = useSelector(({ headlines }) => headlines.headlines);
+  const headlines = useSelector(selectAllHeadlines);
+  const loading = useSelector(({ headlines }) => headlines.loading);
 
   useHeadlines();
 
   return (
-    <div className="list__container">
-      {!headlines ? (
-        <div className="no-content-container">No headlines</div>
-      ) : headlines.length === 0 ? (
-        <div className="no-content-container">
-          <CircularProgress />
-        </div>
-      ) : (
+    <ListContainer>
+      {loading ? (
+        <CircularProgress />
+      ) : headlines.length ? (
         headlines.map((headline) => {
-          return <Headline key={headline.id} headline={headline} />;
+          return <Card key={headline.id} headline={headline} />;
         })
+      ) : (
+        <NoContent>No headlines yet</NoContent>
       )}
-    </div>
+    </ListContainer>
   );
 }

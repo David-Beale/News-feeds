@@ -20,7 +20,7 @@ const addFeed = createSlice({
     enableAddFeed(state) {
       state.menu = "start";
     },
-    disableAddFeed(state) {
+    onCancel(state) {
       state.menu = null;
     },
     setDomain(state, action) {
@@ -65,7 +65,7 @@ const addFeed = createSlice({
 
 export const {
   enableAddFeed,
-  disableAddFeed,
+  onCancel,
   setDomain,
   setName,
   setHtml,
