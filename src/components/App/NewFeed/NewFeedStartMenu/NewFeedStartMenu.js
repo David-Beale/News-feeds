@@ -56,11 +56,11 @@ export default function NewFeedStartMenu() {
   };
   const handleAddressChange = (event) => {
     setUrl(event.target.value);
-    setSubmitEnabled(url && name ? true : false);
+    setSubmitEnabled(event.target.value && name ? true : false);
   };
   const handleNameChange = (event) => {
     setName(event.target.value);
-    setSubmitEnabled(url && name ? true : false);
+    setSubmitEnabled(url && event.target.value ? true : false);
   };
   const handleCancel = (e) => {
     e.preventDefault();

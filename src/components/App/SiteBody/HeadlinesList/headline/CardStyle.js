@@ -1,10 +1,9 @@
 import styled from "styled-components";
-const color = "rgb(10, 144, 197)";
 const topShadow = "#cbced1";
 const bottomShadow = "#ffffff";
 
 export const Container = styled.div`
-  height: 300px;
+  height: 250px;
   width: 700px;
   font-family: Arial;
   display: flex;
@@ -32,7 +31,7 @@ export const TextContainer = styled.div`
   flex-direction: column;
   margin: 32px;
   width: 336px;
-  height: 236px;
+  height: 186px;
   align-items: center;
   justify-content: flex-start;
   overflow-y: auto;

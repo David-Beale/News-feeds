@@ -62,6 +62,7 @@ export const Warning = styled.div`
   position: relative;
   top: -25px;
   color: red;
+  text-align: center;
 `;
 
 export const styleIcon = (Component) => {

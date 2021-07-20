@@ -131,9 +131,10 @@ export const nextStatus = () => async (dispatch, getState) => {
 
 export const submitNewScrape = () => async (dispatch, getState) => {
   const user = getState().auth.user;
+  const domain = getState().addFeed.domain;
   const selectors = getState().addFeed.selectors;
   try {
-    await dbApi.collection("scrapers").add({ ...selectors, user });
+    await dbApi.collection("scrapers").add({ ...selectors, user, domain });
   } catch (error) {
     console.log(error);
     return error;

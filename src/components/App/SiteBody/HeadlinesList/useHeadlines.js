@@ -12,6 +12,7 @@ export const useHeadlines = () => {
       .collection("userFeeds")
       .doc(user)
       .collection("headlines")
+      .orderBy("date", "desc")
       .onSnapshot((querySnapshot) => {
         if (!querySnapshot.size) {
           dispatch(noHeadlines());
