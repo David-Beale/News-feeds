@@ -36,6 +36,7 @@ export const TextContainer = styled.div`
   align-items: center;
   justify-content: flex-start;
   overflow-y: auto;
+  color: ${color};
 `;
 export const Title = styled.div`
   font-size: 1.3rem;

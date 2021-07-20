@@ -8,17 +8,20 @@ import { CircularProgress } from "@material-ui/core";
 import {
   Backdrop,
   SubContainer,
-  Form,
-  InputField,
   Field,
-  Input,
   Button,
   Title,
+} from "../NewFeedMenusStyle";
+
+import {
+  Form,
+  InputField,
+  Input,
   ErrorBox,
-  styleIcon,
   MessageContainer,
   Warning,
-} from "../NewFeedMenusStyle";
+  styleIcon,
+} from "./NewFeedStartMenuStyle";
 
 import { onCancel, fetchWebsite } from "../../../../redux/addFeed";
 const StyledInsertLinkIcon = styleIcon(InsertLinkIcon);

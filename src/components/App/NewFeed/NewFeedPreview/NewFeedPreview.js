@@ -2,20 +2,12 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { onCancel } from "../../../../redux/addFeed";
 
-import {
-  Backdrop,
-  SubContainer,
-  Title,
-  Button,
-  OptionsBody,
-  Image,
-  Text,
-  Field,
-  StyledNavButton,
-  OptionNum,
-} from "../NewFeedMenusStyle";
-
 import Card from "../../SiteBody/HeadlinesList/headline/Card";
+
+import { Backdrop, Title, Button, Field } from "../NewFeedMenusStyle";
+
+import { PreviewContainer } from "./NewFeedPreviewStyle";
+
 export default function NewFeedPreview() {
   const previewData = useSelector(({ addFeed }) => addFeed.previewData);
   const dispatch = useDispatch();
@@ -29,14 +21,16 @@ export default function NewFeedPreview() {
 
   return (
     <Backdrop onPointerDown={handleCancel}>
-      <Title>Preview</Title>
-      <div onPointerDown={stopPropagation}>
-        <Card headline={previewData} />
-      </div>
-      <Field>
-        <Button onClick={handleCancel}>Cancel</Button>
-        <Button>Submit</Button>
-      </Field>
+      <PreviewContainer>
+        <Title>Preview</Title>
+        <div onPointerDown={stopPropagation}>
+          <Card headline={previewData} />
+        </div>
+        <Field>
+          <Button onClick={handleCancel}>Cancel</Button>
+          <Button>Submit</Button>
+        </Field>
+      </PreviewContainer>
     </Backdrop>
   );
 }

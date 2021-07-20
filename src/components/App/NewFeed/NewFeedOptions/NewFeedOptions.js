@@ -10,13 +10,16 @@ import {
   SubContainer,
   Title,
   Button,
+  Field,
+} from "../NewFeedMenusStyle";
+
+import {
   OptionsBody,
   Image,
   Text,
-  Field,
   StyledNavButton,
   OptionNum,
-} from "../NewFeedMenusStyle";
+} from "./NewFeedOptionsStyle";
 
 export default function NewFeedOptions() {
   const dispatch = useDispatch();
