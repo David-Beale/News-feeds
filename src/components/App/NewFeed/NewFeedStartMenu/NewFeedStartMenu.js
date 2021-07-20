@@ -23,7 +23,7 @@ import {
   styleIcon,
 } from "./NewFeedStartMenuStyle";
 
-import { onCancel, fetchWebsite } from "../../../../redux/addFeed";
+import { closeMenu, fetchWebsite } from "../../../../redux/addFeed";
 const StyledInsertLinkIcon = styleIcon(InsertLinkIcon);
 const StyledBookmarkIcon = styleIcon(BookmarkIcon);
 
@@ -51,7 +51,7 @@ export default function NewFeedStartMenu() {
     if (error) {
       setError("Error loading target url");
     } else {
-      dispatch(onCancel());
+      dispatch(closeMenu());
     }
   };
   const handleAddressChange = (event) => {
@@ -64,7 +64,7 @@ export default function NewFeedStartMenu() {
   };
   const handleCancel = (e) => {
     e.preventDefault();
-    dispatch(onCancel());
+    dispatch(closeMenu());
   };
   const stopPropagation = (e) => {
     e.stopPropagation();
@@ -75,7 +75,7 @@ export default function NewFeedStartMenu() {
         <Title>Add New Feed</Title>
         <Warning>Sites which rely on scripts may not load correctly</Warning>
 
-        <Form onSubmit={handleSubmit}>
+        <Form>
           <InputField>
             <StyledInsertLinkIcon fontSize="large" />
             <Input
@@ -106,7 +106,9 @@ export default function NewFeedStartMenu() {
           </MessageContainer>
           <Field>
             <Button onClick={handleCancel}>Cancel</Button>
-            <Button disabled={!submitEnabled}>Submit</Button>
+            <Button disabled={!submitEnabled} onClick={handleSubmit}>
+              Submit
+            </Button>
           </Field>
         </Form>
       </SubContainer>

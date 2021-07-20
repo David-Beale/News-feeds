@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearOptions, selectOption } from "../../../../redux/addFeed";
+import { closeMenu, selectOption } from "../../../../redux/addFeed";
 
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
@@ -29,7 +29,7 @@ export default function NewFeedOptions() {
   const index = useRef(0);
 
   const handleCancel = () => {
-    dispatch(clearOptions());
+    dispatch(closeMenu());
   };
   const handleSelect = () => {
     dispatch(selectOption(option));

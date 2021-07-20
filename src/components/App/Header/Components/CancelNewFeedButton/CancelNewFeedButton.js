@@ -3,14 +3,14 @@ import { useDispatch } from "react-redux";
 import { Tooltip } from "@material-ui/core";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 
-import { removeHtml } from "../../../../../redux/addFeed";
+import { reset } from "../../../../../redux/addFeed";
 import { StyledIconButton, AlignLeftContainer } from "../../HeaderStyle";
 
 export default function CancelNewFeedButton() {
   const dispatch = useDispatch();
 
   const onClick = () => {
-    dispatch(removeHtml());
+    dispatch(reset());
   };
   return (
     <AlignLeftContainer>

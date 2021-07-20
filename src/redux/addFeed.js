@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { functionsApi } from "../api/firebase";
+import { getHtml, dbApi } from "../api/firebase";
 
 export const initialState = {
   menu: null,
@@ -8,9 +8,8 @@ export const initialState = {
   html: "",
   previewData: {},
   selectors: {},
-  selectedNode: "",
-  name: "",
   status: 1,
+  finished: false,
 };
 
 const addFeed = createSlice({
@@ -20,20 +19,25 @@ const addFeed = createSlice({
     enableAddFeed(state) {
       state.menu = "start";
     },
-    onCancel(state) {
+    closeMenu(state) {
+      state.options = [];
       state.menu = null;
     },
     setDomain(state, action) {
       state.domain = action.payload;
     },
+    setUrl(state, action) {
+      state.selectors = { ...state.selectors, url: action.payload };
+    },
     setName(state, action) {
-      state.name = action.payload;
+      state.previewData = { ...state.previewData, name: action.payload };
+      state.selectors = { ...state.selectors, name: action.payload };
     },
     setHtml(state, action) {
       state.html = action.payload;
       state.showHtml = true;
     },
-    removeHtml(state) {
+    reset(state) {
       Object.keys(state).forEach((key) => (state[key] = initialState[key]));
     },
     setPreviewData(state, action) {
@@ -46,11 +50,6 @@ const addFeed = createSlice({
       state.options = action.payload;
       state.menu = "options";
     },
-
-    clearOptions(state) {
-      state.options = [];
-      state.menu = null;
-    },
     setStatus(state, action) {
       state.status = action.payload;
     },
@@ -60,23 +59,27 @@ const addFeed = createSlice({
     enabledPreview(state) {
       state.menu = "preview";
     },
+    setFinished(state) {
+      state.finished = true;
+    },
   },
 });
 
 export const {
   enableAddFeed,
-  onCancel,
+  closeMenu,
   setDomain,
+  setUrl,
   setName,
   setHtml,
-  removeHtml,
+  reset,
   setPreviewData,
   setSelectors,
   setOptions,
-  clearOptions,
   setStatus,
   prevStatus,
   enabledPreview,
+  setFinished,
 } = addFeed.actions;
 
 export default addFeed.reducer;
@@ -96,16 +99,18 @@ const formatUrl = (url) => {
   return newUrl;
 };
 
-const getHtml = functionsApi.httpsCallable("getHTML");
-
 export const fetchWebsite = (url, name) => async (dispatch) => {
   const newUrl = formatUrl(url);
   const domain = getDomain(newUrl);
+  dispatch(setUrl(newUrl));
   dispatch(setDomain(domain));
   dispatch(setName(name));
 
   try {
     const result = await getHtml({ link: url });
+    if (result.data.error) {
+      return result.data.error;
+    }
     dispatch(setHtml(result.data.htmlBody));
   } catch (error) {
     return error;
@@ -115,11 +120,29 @@ export const fetchWebsite = (url, name) => async (dispatch) => {
 export const selectOption = (option) => async (dispatch) => {
   dispatch(setPreviewData({ [option.type]: option.data }));
   dispatch(setSelectors({ [option.type]: option.path }));
-  dispatch(clearOptions());
+  dispatch(closeMenu());
   dispatch(nextStatus());
 };
 export const nextStatus = () => async (dispatch, getState) => {
   const currentStatus = getState().addFeed.status;
   if (currentStatus < 4) dispatch(setStatus(currentStatus + 1));
   else dispatch(enabledPreview());
+};
+
+export const submitNewScrape = () => async (dispatch, getState) => {
+  const user = getState().auth.user;
+  const selectors = getState().addFeed.selectors;
+  try {
+    await dbApi.collection("scrapers").add({ ...selectors, user });
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+  dispatch(setFinished());
+};
+
+export const onClose = () => async (dispatch, getState) => {
+  const finished = getState().addFeed.finished;
+  if (finished) dispatch(reset());
+  else dispatch(closeMenu());
 };

@@ -38,7 +38,7 @@ export const SubContainer = styled.div`
   transition: 200ms;
 `;
 
-export const Field = styled.form`
+export const Field = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;

@@ -1,14 +1,16 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { dbApi } from "../../../../api/firebase";
 import { addHeadline, noHeadlines } from "../../../../redux/headlines";
 
 export const useHeadlines = () => {
+  const user = useSelector(({ auth }) => auth.user);
   const dispatch = useDispatch();
   useEffect(() => {
+    if (!user) return;
     const unsubscribe = dbApi
       .collection("userFeeds")
-      .doc("IJcD4g22XOU2IDzppT9FxmU88F93")
+      .doc(user)
       .collection("headlines")
       .onSnapshot((querySnapshot) => {
         if (!querySnapshot.size) {
@@ -21,5 +23,5 @@ export const useHeadlines = () => {
       });
 
     return unsubscribe;
-  }, [dispatch]);
+  }, [dispatch, user]);
 };
