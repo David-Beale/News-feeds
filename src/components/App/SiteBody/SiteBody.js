@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import HeadlinesList from "./HeadlinesList/HeadlinesList";
 import ExternalSite from "./ExternalSite/ExternalSite";
 
+import { useHeadlines } from "./useHeadlines";
+
 const SiteBodyContainer = styled.div`
   padding-top: 75px;
   position: relative;
@@ -12,9 +14,10 @@ const SiteBodyContainer = styled.div`
 `;
 
 export default function SiteBody() {
+  useHeadlines();
   const showHtml = useSelector(({ addFeed }) => addFeed.showHtml);
   return (
-    <SiteBodyContainer>
+    <SiteBodyContainer id={"headlines-container"}>
       {showHtml ? <ExternalSite /> : <HeadlinesList />}
     </SiteBodyContainer>
   );

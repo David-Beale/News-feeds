@@ -21,7 +21,7 @@ const typeMap = {
   4: "link",
 };
 function textSearch(node) {
-  return node.innerText.trim();
+  return node.innerText?.trim();
 }
 function imageSearch(node) {
   return node.src;

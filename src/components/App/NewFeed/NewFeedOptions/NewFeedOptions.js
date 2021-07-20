@@ -46,35 +46,39 @@ export default function NewFeedOptions() {
     setOption(options[index.current]);
   };
   return (
-    <Backdrop onPointerDown={handleCancel}>
-      <SubContainer onPointerDown={stopPropagation}>
-        <Title>
-          {options.length} option{options.length > 1 ? "s" : ""} found
-        </Title>
-        <OptionNum>
-          {index.current + 1} / {options.length}
-        </OptionNum>
-        <OptionsBody>
-          <StyledNavButton disabled={index.current === 0} onClick={onLeft}>
-            <ArrowBackIosIcon fontSize="large" />
-          </StyledNavButton>
-          {option.type === "image" ? (
-            <Image src={option.data} />
-          ) : (
-            <Text>{option.data}</Text>
-          )}
-          <StyledNavButton
-            disabled={index.current === options.length - 1}
-            onClick={onRight}
-          >
-            <ArrowForwardIosIcon fontSize="large" />
-          </StyledNavButton>
-        </OptionsBody>
-        <Field>
-          <Button onClick={handleCancel}>Cancel</Button>
-          <Button onClick={handleSelect}>Select</Button>
-        </Field>
-      </SubContainer>
-    </Backdrop>
+    <>
+      {option && (
+        <Backdrop onPointerDown={handleCancel}>
+          <SubContainer onPointerDown={stopPropagation}>
+            <Title>
+              {options.length} option{options.length > 1 ? "s" : ""} found
+            </Title>
+            <OptionNum>
+              {index.current + 1} / {options.length}
+            </OptionNum>
+            <OptionsBody>
+              <StyledNavButton disabled={index.current === 0} onClick={onLeft}>
+                <ArrowBackIosIcon fontSize="large" />
+              </StyledNavButton>
+              {option.type === "image" ? (
+                <Image src={option.data} />
+              ) : (
+                <Text>{option.data}</Text>
+              )}
+              <StyledNavButton
+                disabled={index.current === options.length - 1}
+                onClick={onRight}
+              >
+                <ArrowForwardIosIcon fontSize="large" />
+              </StyledNavButton>
+            </OptionsBody>
+            <Field>
+              <Button onClick={handleCancel}>Cancel</Button>
+              <Button onClick={handleSelect}>Select</Button>
+            </Field>
+          </SubContainer>
+        </Backdrop>
+      )}
+    </>
   );
 }

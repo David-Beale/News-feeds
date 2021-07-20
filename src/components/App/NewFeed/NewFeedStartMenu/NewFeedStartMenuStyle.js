@@ -44,7 +44,7 @@ export const ErrorBox = styled.div`
   font-size: 14px;
   font-weight: 600;
   color: #d64958;
-  align-items: flex-start;
+  align-items: center;
   box-shadow: inset 8px 8px 8px ${topShadow},
     inset -8px -8px 8px hsl(353, 92%, 90%);
 `;

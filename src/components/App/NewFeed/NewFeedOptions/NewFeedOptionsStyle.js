@@ -28,6 +28,7 @@ export const Text = styled.div`
   max-height: 250px;
   width: 250px;
   overflow-y: auto;
+  font-size: 1rem;
 `;
 export const StyledNavButton = styled(IconButton)`
   border-radius: 10px;
