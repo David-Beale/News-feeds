@@ -5,7 +5,7 @@ const topShadow = "#cbced1";
 const bottomShadow = "#ffffff";
 const color = "rgb(10, 144, 197)";
 
-export const Form = styled.div`
+export const Form = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
