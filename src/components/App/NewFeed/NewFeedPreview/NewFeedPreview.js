@@ -45,10 +45,10 @@ export default function NewFeedPreview() {
           {success && <Success>{success}</Success>}
         </MessageContainer>
         <Field>
+          {!success && !error && <Button onClick={handleSubmit}>Submit</Button>}
           <Button onClick={handleCancel}>
             {!success && !error ? "Cancel" : "Close"}
           </Button>
-          {!success && !error && <Button onClick={handleSubmit}>Submit</Button>}
         </Field>
       </PreviewContainer>
     </Backdrop>
