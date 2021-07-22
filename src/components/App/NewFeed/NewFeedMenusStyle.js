@@ -24,6 +24,7 @@ export const Backdrop = styled.div`
 export const SubContainer = styled.div`
   height: ${(props) => 390 + props.addedHeight}px;
   width: 400px;
+  max-width: calc(100vw - 20px);
   font-family: Arial;
   display: flex;
   flex-direction: column;

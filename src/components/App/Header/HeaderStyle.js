@@ -7,14 +7,14 @@ export const HeaderContainer = styled.div`
   position: fixed;
   top: 0;
   z-index: 1;
-  width: calc(100% - 15px);
+  width: ${(props) => (props.isDesktop ? "calc(100% - 15px)" : "100%")};
   padding: 10px;
   background-color: #ecf0f3;
   height: 75px;
   box-shadow: 0px 13px 20px ${topShadow};
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: ${(props) => (props.isDesktop ? "center" : "flex-start")};
 `;
 
 export const StyledIconButton = styled(IconButton)`
@@ -27,5 +27,5 @@ export const StyledIconButton = styled(IconButton)`
 `;
 export const AlignLeftContainer = styled.div`
   position: absolute;
-  left: 15px;
+  left: ${(props) => (props.isDesktop ? "15px" : "")};
 `;

@@ -7,20 +7,20 @@ import { deleteHeadline } from "../../../../../../../redux/headlines";
 const Container = styled.div`
   position: absolute;
   bottom: 0px;
-  left: 305px;
+  right: ${(props) => (props.isDesktop ? "35px" : "calc(50% - 5px)")};
   color: black;
   &:hover {
     color: red;
   }
 `;
-export default function Delete({ id }) {
+export default function Delete({ id, isDesktop }) {
   const dispatch = useDispatch();
   const onClick = (e) => {
     e.stopPropagation();
     dispatch(deleteHeadline(id));
   };
   return (
-    <Container onClick={onClick}>
+    <Container isDesktop={isDesktop} onClick={onClick}>
       <DeleteForeverIcon fontSize="small" />
     </Container>
   );

@@ -6,14 +6,15 @@ import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import { reset } from "../../../../../redux/addFeed";
 import { StyledIconButton, AlignLeftContainer } from "../../HeaderStyle";
 
-export default function CancelNewFeedButton() {
+export default function CancelNewFeedButton({ isDesktop }) {
   const dispatch = useDispatch();
 
   const onClick = () => {
     dispatch(reset());
   };
+
   return (
-    <AlignLeftContainer>
+    <AlignLeftContainer isDesktop={isDesktop}>
       <Tooltip title="Cancel">
         <StyledIconButton onClick={onClick}>
           <HighlightOffIcon fontSize="large" />

@@ -62,7 +62,10 @@ export default function NewFeedOptions() {
                   disabled={index.current === 0}
                   onClick={onLeft}
                 >
-                  <ArrowBackIosIcon fontSize="large" />
+                  <ArrowBackIosIcon
+                    style={{ position: "relative", left: 7.5 }}
+                    fontSize="large"
+                  />
                 </StyledNavButton>
                 {option.type === "image" ? (
                   <Image src={option.data} />

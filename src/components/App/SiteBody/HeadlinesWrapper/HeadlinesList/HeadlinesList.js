@@ -3,7 +3,7 @@ import "./HeadlinesList.css";
 import { useDispatch, useSelector } from "react-redux";
 import { FixedSizeList as List } from "react-window";
 import InfiniteLoader from "react-window-infinite-loader";
-import { CircularProgress } from "@material-ui/core";
+import { CircularProgress, useMediaQuery } from "@material-ui/core";
 
 import { getNewHeadlines } from "../../../../../redux/headlines";
 import { useContainerHeight } from "./useContainerHeight";
@@ -14,6 +14,7 @@ const InnerElement = (props) => {
 };
 
 export default function HeadlinesList({ headlines }) {
+  const isDesktop = useMediaQuery("(min-width:700px)");
   const dispatch = useDispatch();
   const hasNextPage = useSelector(({ headlines }) => !headlines.finished);
 
@@ -53,7 +54,7 @@ export default function HeadlinesList({ headlines }) {
           className="list"
           height={height}
           itemCount={itemCount}
-          itemSize={290}
+          itemSize={isDesktop ? 290 : 320}
           onItemsRendered={onItemsRendered}
           ref={ref}
           width={"100%"}

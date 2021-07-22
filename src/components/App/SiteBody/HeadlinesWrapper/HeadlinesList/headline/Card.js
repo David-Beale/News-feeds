@@ -1,31 +1,19 @@
 import React from "react";
-import moment from "moment";
 
-import {
-  Container,
-  Image,
-  TextContainer,
-  Title,
-  Summary,
-  Name,
-  DateContainer,
-} from "./CardStyle";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
-import Delete from "./Delete/Delete";
+import DesktopCard from "./DesktopCard/DesktopCard";
+import MobileCard from "./MobileCard/MobileCard";
 
 export default function Card({ headline }) {
+  const isDesktop = useMediaQuery("(min-width:700px)");
   return (
-    <Container onClick={() => window.open(headline.link, "_blank")}>
-      <Image src={headline.image} />
-      <Name>{headline.name}</Name>
-      <Delete id={headline.id}></Delete>
-      <TextContainer>
-        <Title>{headline.title}</Title>
-        <Summary>{headline.summary}</Summary>
-      </TextContainer>
-      <DateContainer>
-        {moment(headline.date).format("D MMM YYYY")}
-      </DateContainer>
-    </Container>
+    <>
+      {isDesktop ? (
+        <DesktopCard headline={headline} />
+      ) : (
+        <MobileCard headline={headline} />
+      )}
+    </>
   );
 }

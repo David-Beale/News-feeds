@@ -14,7 +14,9 @@ export const MessageContainer = styled.div`
 `;
 export const Error = styled.div`
   color: red;
+  text-align: center;
 `;
 export const Success = styled.div`
   color: green;
+  text-align: center;
 `;

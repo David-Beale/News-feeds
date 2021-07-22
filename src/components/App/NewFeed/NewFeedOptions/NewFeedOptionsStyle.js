@@ -18,10 +18,10 @@ export const OptionNum = styled.div`
 `;
 export const Image = styled.img`
   max-height: 250px;
-  max-width: 250px;
+  max-width: calc(100% - 70px);
 `;
 export const Text = styled.div`
-  text-align: justify;
+  text-align: center;
   padding: 10px;
   color: ${color};
   overflow-wrap: break-word;
@@ -34,4 +34,5 @@ export const StyledNavButton = styled(IconButton)`
   border-radius: 10px;
   box-shadow: unset;
   height: 300px;
+  padding: 0;
 `;

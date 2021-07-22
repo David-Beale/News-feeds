@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useMediaQuery } from "@material-ui/core";
 
 import SignOutButton from "./Components/SignOutButton/SignOutButton";
 import AddNewFeedButton from "./Components/AddNewFeedButton/AddNewFeedButton";
@@ -9,14 +10,15 @@ import { HeaderContainer } from "./HeaderStyle";
 
 export default function Header() {
   const enabled = useSelector(({ addFeed }) => addFeed.showHtml);
+  const isDesktop = useMediaQuery("(min-width:700px)");
   return (
-    <HeaderContainer>
+    <HeaderContainer isDesktop={isDesktop}>
       {!enabled ? (
         <AddNewFeedButton />
       ) : (
         <>
-          <CancelNewFeedButton />
-          <NewFeedInstructions />
+          <CancelNewFeedButton isDesktop={isDesktop} />
+          <NewFeedInstructions isDesktop={isDesktop} />
         </>
       )}
       <SignOutButton />
