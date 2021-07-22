@@ -12,7 +12,9 @@ body {
   overflow: hidden;
   color: rgb(10, 144, 197);
 }
-
+:root{
+  overflow: hidden !important;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

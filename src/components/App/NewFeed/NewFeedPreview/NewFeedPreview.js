@@ -4,7 +4,7 @@ import { CircularProgress } from "@material-ui/core";
 
 import { onClose, submitNewScrape } from "../../../../redux/addFeed";
 
-import Card from "../../SiteBody/HeadlinesList/headline/Card";
+import Card from "../../SiteBody/HeadlinesWrapper/HeadlinesList/headline/Card";
 
 import { Backdrop, Title, Button, Field } from "../NewFeedMenusStyle";
 import {

@@ -32,7 +32,7 @@ export const Input = styled.input`
 `;
 
 export const ErrorBox = styled.div`
-  padding: 15px 10px 15px 20px;
+  padding: 15px 10px;
   height: 90px;
   margin: 5px 0;
   background: none;

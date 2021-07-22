@@ -6,7 +6,11 @@ import { useSelector } from "react-redux";
 import { useSearchNodes } from "./useSearchNodes";
 
 const ExternalSiteContainer = styled.div`
-  margin: 36px;
+  padding-top: 100px;
+  position: relative;
+  z-index: 0;
+  height: 100vh;
+  overflow-y: scroll;
 `;
 
 export default function ExternalSite() {

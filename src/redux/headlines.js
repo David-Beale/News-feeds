@@ -2,12 +2,14 @@ import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
 import { dbApi } from "../api/firebase";
 
 let lastVisible;
+let loading;
 const headlinesAdapter = createEntityAdapter({
   sortComparer: (a, b) => b.date - a.date,
 });
 
 export const initialState = headlinesAdapter.getInitialState({
   loading: true,
+  finished: false,
 });
 
 const headlines = createSlice({
@@ -15,13 +17,19 @@ const headlines = createSlice({
   initialState,
   reducers: {
     addHeadline(state, action) {
-      state.loading = false;
       headlinesAdapter.upsertOne(state, action.payload);
+    },
+    setFinished(state) {
+      state.finished = true;
+    },
+    setLoaded(state) {
+      state.loading = false;
     },
   },
 });
 
-export const { addHeadline, noHeadlines } = headlines.actions;
+export const { addHeadline, noHeadlines, setFinished, setLoaded } =
+  headlines.actions;
 
 export const { selectAll: selectAllHeadlines } = headlinesAdapter.getSelectors(
   (state) => state.headlines
@@ -31,15 +39,15 @@ export default headlines.reducer;
 
 export const subscribeToHeadlines = () => async (dispatch, getState) => {
   const user = getState().auth.user;
-  return dbApi
-    .collection("userFeeds")
-    .doc(user)
+  dbApi
     .collection("headlines")
+    .where("user", "==", user)
     .orderBy("date", "desc")
     .limit(5)
     .onSnapshot((querySnapshot) => {
       if (!querySnapshot.size) {
-        dispatch(noHeadlines());
+        dispatch(setFinished());
+        dispatch(setLoaded());
         return;
       }
       querySnapshot.forEach((doc) => {
@@ -48,15 +56,17 @@ export const subscribeToHeadlines = () => async (dispatch, getState) => {
       if (!lastVisible) {
         lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
       }
+      dispatch(setLoaded());
     });
 };
 
 export const getNewHeadlines = () => async (dispatch, getState) => {
-  const state = getState();
-  return dbApi
-    .collection("userFeeds")
-    .doc(state.auth.user)
+  if (loading || !lastVisible) return;
+  loading = true;
+  const user = getState().auth.user;
+  dbApi
     .collection("headlines")
+    .where("user", "==", user)
     .orderBy("date", "desc")
     .startAfter(lastVisible)
     .limit(5)
@@ -66,6 +76,8 @@ export const getNewHeadlines = () => async (dispatch, getState) => {
         dispatch(addHeadline({ id: doc.id, ...doc.data() }));
       });
       lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
+      if (querySnapshot.size < 5) dispatch(setFinished());
+      loading = false;
     })
     .catch((error) => {
       console.log("Error getting documents: ", error);

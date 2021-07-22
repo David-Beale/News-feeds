@@ -47,15 +47,15 @@ export default function NewFeedOptions() {
   };
   return (
     <>
-      {option && (
-        <Backdrop onPointerDown={handleCancel}>
-          <SubContainer onPointerDown={stopPropagation}>
-            <Title>
-              {options.length} option{options.length > 1 ? "s" : ""} found
-            </Title>
-            <OptionNum>
-              {index.current + 1} / {options.length}
-            </OptionNum>
+      <Backdrop onPointerDown={handleCancel}>
+        <SubContainer onPointerDown={stopPropagation}>
+          <Title>
+            {options.length} option{options.length > 1 ? "s" : ""} found
+          </Title>
+          <OptionNum>
+            {index.current + 1} / {options.length}
+          </OptionNum>
+          {option && (
             <OptionsBody>
               <StyledNavButton disabled={index.current === 0} onClick={onLeft}>
                 <ArrowBackIosIcon fontSize="large" />
@@ -72,13 +72,13 @@ export default function NewFeedOptions() {
                 <ArrowForwardIosIcon fontSize="large" />
               </StyledNavButton>
             </OptionsBody>
-            <Field>
-              <Button onClick={handleCancel}>Cancel</Button>
-              <Button onClick={handleSelect}>Select</Button>
-            </Field>
-          </SubContainer>
-        </Backdrop>
-      )}
+          )}
+          <Field>
+            {option && <Button onClick={handleSelect}>Select</Button>}
+            <Button onClick={handleCancel}>Cancel</Button>
+          </Field>
+        </SubContainer>
+      </Backdrop>
     </>
   );
 }

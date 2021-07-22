@@ -35,9 +35,13 @@ function linkSearch(node) {
   return href;
 }
 function getPath(node) {
-  const path = unique(node);
-  path.replace("#externalMaster", "body");
-  return path;
+  try {
+    const path = unique(node);
+    path.replace("#externalMaster", "body");
+    return path;
+  } catch (error) {
+    console.log(error);
+  }
 }
 function checkNode(node) {
   const data = searchFunction(node);
@@ -47,6 +51,7 @@ function checkNode(node) {
       path: getPath(node),
       type: type,
     };
+    if (!payload.path) return "error";
     //we want the original node's option to be shown first
     if (node === originalNode) {
       options.push(payload);
@@ -57,7 +62,8 @@ function checkNode(node) {
   }
   const children = node.children;
   for (let i = 0; i < children.length; i++) {
-    checkNode(children[i]);
+    const error = checkNode(children[i]);
+    if (error) return error;
   }
 }
 
@@ -71,7 +77,8 @@ export const getOptions = (node, status, targetDomainArg) => {
 
   //start 1 level up then recurse down the tree
   const parent = node.parentNode;
-  checkNode(parent);
+  const error = checkNode(parent);
+  if (error) return [];
 
   Object.values(optionsMap).forEach((value) => {
     if (value.data !== options[0]?.data) options.push(value);

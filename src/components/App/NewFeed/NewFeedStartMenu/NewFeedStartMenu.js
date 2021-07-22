@@ -69,6 +69,7 @@ export default function NewFeedStartMenu() {
   const stopPropagation = (e) => {
     e.stopPropagation();
   };
+
   return (
     <Backdrop onPointerDown={handleCancel}>
       <SubContainer addedHeight={addedHeight} onPointerDown={stopPropagation}>
@@ -105,10 +106,10 @@ export default function NewFeedStartMenu() {
             {error && <ErrorBox>{error}</ErrorBox>}
           </MessageContainer>
           <Field>
-            <Button onClick={handleCancel}>Cancel</Button>
             <Button disabled={!submitEnabled} onClick={handleSubmit}>
               Submit
             </Button>
+            <Button onClick={handleCancel}>Cancel</Button>
           </Field>
         </Form>
       </SubContainer>

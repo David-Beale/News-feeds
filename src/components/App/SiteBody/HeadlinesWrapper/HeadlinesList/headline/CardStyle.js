@@ -32,7 +32,6 @@ export const TextContainer = styled.div`
   margin: 32px;
   width: 336px;
   height: 186px;
-  align-items: center;
   justify-content: flex-start;
   overflow-y: auto;
 `;
