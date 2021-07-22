@@ -25,10 +25,13 @@ const headlines = createSlice({
     setLoaded(state) {
       state.loading = false;
     },
+    deleteOne(state, action) {
+      headlinesAdapter.removeOne(state, action.payload);
+    },
   },
 });
 
-export const { addHeadline, noHeadlines, setFinished, setLoaded } =
+export const { addHeadline, noHeadlines, setFinished, setLoaded, deleteOne } =
   headlines.actions;
 
 export const { selectAll: selectAllHeadlines } = headlinesAdapter.getSelectors(
@@ -42,6 +45,7 @@ export const subscribeToHeadlines = () => async (dispatch, getState) => {
   dbApi
     .collection("headlines")
     .where("user", "==", user)
+    .where("hide", "==", false)
     .orderBy("date", "desc")
     .limit(5)
     .onSnapshot((querySnapshot) => {
@@ -67,6 +71,7 @@ export const getNewHeadlines = () => async (dispatch, getState) => {
   dbApi
     .collection("headlines")
     .where("user", "==", user)
+    .where("hide", "==", false)
     .orderBy("date", "desc")
     .startAfter(lastVisible)
     .limit(5)
@@ -82,4 +87,8 @@ export const getNewHeadlines = () => async (dispatch, getState) => {
     .catch((error) => {
       console.log("Error getting documents: ", error);
     });
+};
+export const deleteHeadline = (id) => async (dispatch) => {
+  dbApi.collection("headlines").doc(id).update({ hide: true });
+  dispatch(deleteOne(id));
 };

@@ -17,7 +17,7 @@ export const authApi = firebase.auth();
 export const dbApi = firebase.firestore();
 const functionsApi = firebase.app().functions("europe-west2");
 
-dbApi.useEmulator("localhost", 8080);
-functionsApi.useEmulator("localhost", 5001);
+// dbApi.useEmulator("localhost", 8080);
+// functionsApi.useEmulator("localhost", 5001);
 
 export const getHtml = functionsApi.httpsCallable("getHTML");
