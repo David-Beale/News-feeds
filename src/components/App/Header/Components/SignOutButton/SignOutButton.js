@@ -2,9 +2,9 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { signOut } from "../../../../../redux/auth";
 
-import { SignOutButton, SignOutContainer } from "./SignOutStyle";
+import { StyledSignOutButton } from "./SignOutStyle";
 
-export default function LogoutButton() {
+export default function SignOutButton() {
   const dispatch = useDispatch();
   const onSignOut = async () => {
     try {
@@ -14,8 +14,6 @@ export default function LogoutButton() {
     }
   };
   return (
-    <SignOutContainer>
-      <SignOutButton onClick={onSignOut}>Sign Out</SignOutButton>
-    </SignOutContainer>
+    <StyledSignOutButton onClick={onSignOut}>Sign Out</StyledSignOutButton>
   );
 }

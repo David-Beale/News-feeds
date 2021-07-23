@@ -2,15 +2,7 @@ import styled from "styled-components";
 const bottomShadow = "#ffffff";
 const topShadow = "#cbced1";
 
-export const SignOutContainer = styled.div`
-  position: absolute;
-  top: 0;
-  right: 10px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-`;
-export const SignOutButton = styled.div`
+export const StyledSignOutButton = styled.div`
   color: white;
   font-size: 1.1rem;
   cursor: pointer;

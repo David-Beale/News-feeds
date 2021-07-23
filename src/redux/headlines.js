@@ -31,7 +31,7 @@ const headlines = createSlice({
   },
 });
 
-export const { addHeadline, noHeadlines, setFinished, setLoaded, deleteOne } =
+export const { addHeadline, setFinished, setLoaded, deleteOne } =
   headlines.actions;
 
 export const { selectAll: selectAllHeadlines } = headlinesAdapter.getSelectors(

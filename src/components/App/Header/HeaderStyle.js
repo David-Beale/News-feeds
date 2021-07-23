@@ -14,7 +14,7 @@ export const HeaderContainer = styled.div`
   box-shadow: 0px 13px 20px ${topShadow};
   display: flex;
   align-items: center;
-  justify-content: ${(props) => (props.isDesktop ? "center" : "flex-start")};
+  justify-content: center;
 `;
 
 export const StyledIconButton = styled(IconButton)`
@@ -25,7 +25,20 @@ export const StyledIconButton = styled(IconButton)`
       ? "inset -4px -4px 8px rgba(255, 255, 255, 0.6), inset 8px 8px 16px rgba(0, 0, 0, 0.2)"
       : "-6px -6px 10px rgba(255, 255, 255, 0.7), 6px 6px 10px rgba(0, 0, 0, 0.3)"};
 `;
-export const AlignLeftContainer = styled.div`
+export const CancelButtonContainer = styled.div`
   position: absolute;
-  left: ${(props) => (props.isDesktop ? "15px" : "")};
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: ${(props) => (props.isDesktop ? "flex-start" : "center")};
+`;
+
+export const FeedMenuContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;

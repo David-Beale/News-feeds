@@ -4,7 +4,7 @@ import { Tooltip } from "@material-ui/core";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 
 import { reset } from "../../../../../redux/addFeed";
-import { StyledIconButton, AlignLeftContainer } from "../../HeaderStyle";
+import { StyledIconButton, CancelButtonContainer } from "../../HeaderStyle";
 
 export default function CancelNewFeedButton({ isDesktop }) {
   const dispatch = useDispatch();
@@ -14,12 +14,12 @@ export default function CancelNewFeedButton({ isDesktop }) {
   };
 
   return (
-    <AlignLeftContainer isDesktop={isDesktop}>
+    <CancelButtonContainer isDesktop={isDesktop}>
       <Tooltip title="Cancel">
         <StyledIconButton onClick={onClick}>
           <HighlightOffIcon fontSize="large" />
         </StyledIconButton>
       </Tooltip>
-    </AlignLeftContainer>
+    </CancelButtonContainer>
   );
 }
