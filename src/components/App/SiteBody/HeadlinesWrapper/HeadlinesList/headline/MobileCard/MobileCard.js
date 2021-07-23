@@ -13,7 +13,7 @@ import {
 
 import Delete from "../Delete/Delete";
 
-export default function DesktopCard({ headline }) {
+export default function MobileCard({ headline }) {
   return (
     <MobileContainer onClick={() => window.open(headline.link, "_blank")}>
       <MobileImage src={headline.image} />

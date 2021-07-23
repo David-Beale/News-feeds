@@ -18,7 +18,6 @@ export const HeaderContainer = styled.div`
 `;
 
 export const StyledIconButton = styled(IconButton)`
-  margin: 0 20px;
   color: black;
   box-shadow: ${(props) =>
     props.enabled
@@ -34,6 +33,7 @@ export const CancelButtonContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: ${(props) => (props.isDesktop ? "flex-start" : "center")};
+  padding-left: 15px;
 `;
 
 export const FeedMenuContainer = styled.div`
@@ -41,4 +41,5 @@ export const FeedMenuContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 15px;
 `;

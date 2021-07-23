@@ -1,8 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { signOut } from "../../../../../redux/auth";
-
-import { StyledSignOutButton } from "./SignOutStyle";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import { Tooltip } from "@material-ui/core";
+import { StyledIconButton } from "../../HeaderStyle";
 
 export default function SignOutButton() {
   const dispatch = useDispatch();
@@ -14,6 +15,10 @@ export default function SignOutButton() {
     }
   };
   return (
-    <StyledSignOutButton onClick={onSignOut}>Sign Out</StyledSignOutButton>
+    <Tooltip title="Sign Out">
+      <StyledIconButton onClick={onSignOut}>
+        <ExitToAppIcon fontSize="large" />
+      </StyledIconButton>
+    </Tooltip>
   );
 }

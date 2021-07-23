@@ -19,6 +19,7 @@ export const Container = styled.div`
   width: ${(props) => (props.isDesktop ? "400px" : "100%")};
   background-color: #ecf0f3;
   height: 75px;
+  padding: 0 15px;
   box-shadow: ${(props) =>
     props.isDesktop ? "" : `0px -5px 10px ${topShadow}`};
 `;

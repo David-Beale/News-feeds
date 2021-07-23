@@ -1,7 +1,7 @@
 import React from "react";
 import moment from "moment";
 import { Row, TableCell, AlignCenter } from "../TableStyle";
-import Delete from "./Delete";
+import Delete from "../../Delete";
 
 const transformData = (dataType, data) => {
   switch (dataType) {
