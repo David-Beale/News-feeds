@@ -7,25 +7,29 @@ import AddNewFeedButton from "./Components/AddNewFeedButton/AddNewFeedButton";
 import CancelNewFeedButton from "./Components/CancelNewFeedButton/CancelNewFeedButton";
 import NewFeedInstructions from "./Components/NewFeedInstructions/NewFeedInstructions";
 import EditFeedsButton from "./Components/EditFeedsButton/EditFeedsButton";
+import CancelEditFeedsButton from "./Components/CancelEditFeedsButton/CancelEditFeedsButton";
 
 import { HeaderContainer, FeedMenuContainer } from "./HeaderStyle";
 
 export default function Header() {
   const showHtml = useSelector(({ addFeed }) => addFeed.showHtml);
+  const showEditFeeds = useSelector(({ scrapers }) => scrapers.editFeeds);
   const isDesktop = useMediaQuery("(min-width:700px)");
   return (
     <HeaderContainer isDesktop={isDesktop}>
-      {!showHtml ? (
+      {showHtml ? (
+        <>
+          <CancelNewFeedButton isDesktop={isDesktop} />
+          <NewFeedInstructions isDesktop={isDesktop} />
+        </>
+      ) : showEditFeeds ? (
+        <CancelEditFeedsButton />
+      ) : (
         <FeedMenuContainer>
           <EditFeedsButton />
           <AddNewFeedButton />
           <SignOutButton />
         </FeedMenuContainer>
-      ) : (
-        <>
-          <CancelNewFeedButton isDesktop={isDesktop} />
-          <NewFeedInstructions isDesktop={isDesktop} />
-        </>
       )}
     </HeaderContainer>
   );

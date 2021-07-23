@@ -6,7 +6,7 @@ import InfiniteLoader from "react-window-infinite-loader";
 import { CircularProgress, useMediaQuery } from "@material-ui/core";
 
 import { getNewHeadlines } from "../../../../../redux/headlines";
-import { useContainerHeight } from "./useContainerHeight";
+import { useContainerHeight } from "../../../../../globalHooks/useContainerHeight";
 import Card from "./headline/Card";
 
 const InnerElement = (props) => {

@@ -51,7 +51,7 @@ export const subscribeToScrapers = () => async (dispatch, getState) => {
   dbApi
     .collection("scrapers")
     .where("user", "==", user)
-    .orderBy("date", "desc")
+    .orderBy("name", "desc")
     .onSnapshot((querySnapshot) => {
       if (!querySnapshot.size) {
         dispatch(setLoaded());
