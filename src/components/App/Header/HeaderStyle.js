@@ -8,7 +8,6 @@ export const HeaderContainer = styled.div`
   top: 0;
   z-index: 1;
   width: ${(props) => (props.isDesktop ? "calc(100% - 15px)" : "100%")};
-  padding: 10px;
   background-color: #ecf0f3;
   height: 75px;
   box-shadow: 0px 13px 20px ${topShadow};
@@ -33,7 +32,7 @@ export const CancelButtonContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: ${(props) => (props.isDesktop ? "flex-start" : "center")};
-  padding-left: 15px;
+  padding: 0 15px;
 `;
 
 export const FeedMenuContainer = styled.div`

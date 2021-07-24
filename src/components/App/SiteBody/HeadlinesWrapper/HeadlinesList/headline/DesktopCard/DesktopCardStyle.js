@@ -46,13 +46,13 @@ export const Summary = styled.div`
 export const Name = styled.div`
   position: absolute;
   font-size: 0.8rem;
-  top: 3px;
+  top: 7px;
   left: 332px;
   font-weight: 600;
 `;
 export const DateContainer = styled.div`
   position: absolute;
   font-size: 0.8rem;
-  bottom: 3px;
+  bottom: 7px;
   left: 332px;
 `;
