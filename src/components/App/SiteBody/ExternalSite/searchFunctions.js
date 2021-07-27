@@ -1,6 +1,7 @@
 import unique from "unique-selector";
 
-const domain = "http://localhost:3000/";
+const domain = window.location.origin;
+
 let optionsMap = {};
 let options = [];
 let targetDomain = "";
