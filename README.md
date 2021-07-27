@@ -64,7 +64,7 @@ If you delete a feed, it will no longer be scraped every hour, but it will not d
 
 A virtualised list is used to ensure that only the headlines in view are rendered (instead of rendering every single headline).
 
-Infinite loading and paginated requests are sent automatically to the database to reduce network load.
+Infinite loading is used to automatically send paginated requests to the database to reduce network load.
 
 
 ### Responsive Design
