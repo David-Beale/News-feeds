@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { IconButton } from "@material-ui/core";
 
-const topShadow = "#cbced1";
-
 export const HeaderContainer = styled.div`
   position: fixed;
   top: 0;
@@ -10,7 +8,7 @@ export const HeaderContainer = styled.div`
   width: ${(props) => (props.isDesktop ? "calc(100% - 15px)" : "100%")};
   background-color: #ecf0f3;
   height: 75px;
-  box-shadow: 0px 13px 20px ${topShadow};
+  box-shadow: 0px 13px 20px ${({ theme }) => theme.topShadow};
   display: flex;
   align-items: center;
   justify-content: center;

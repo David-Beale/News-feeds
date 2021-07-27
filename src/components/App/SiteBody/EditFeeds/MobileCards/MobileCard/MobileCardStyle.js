@@ -1,8 +1,5 @@
 import styled from "styled-components";
 
-const topShadow = "#cbced1";
-const bottomShadow = "#ffffff";
-
 export const MobileContainer = styled.div`
   height: 125px;
   width: calc(100% - 30px);
@@ -11,13 +8,15 @@ export const MobileContainer = styled.div`
   flex-direction: column;
   background: #ecf0f3;
   border-radius: 20px;
-  box-shadow: 7px 7px 10px ${topShadow}, -7px -7px 10px ${bottomShadow};
+  box-shadow: 7px 7px 10px ${({ theme }) => theme.topShadow},
+    -7px -7px 10px ${({ theme }) => theme.bottomShadow};
   overflow: hidden;
   position: relative;
   margin: 10px 0;
   &:hover {
     transform: scale(1.05);
-    box-shadow: 13px 13px 20px ${topShadow}, -13px -13px 20px ${bottomShadow};
+    box-shadow: 13px 13px 20px ${({ theme }) => theme.topShadow},
+      -13px -13px 20px ${({ theme }) => theme.bottomShadow};
   }
   transition: 100ms;
 `;

@@ -1,21 +1,19 @@
 import React from "react";
-import {
-  ThemeProvider as MuiThemeProvider,
-  StylesProvider,
-} from "@material-ui/core/styles";
+import { StylesProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { makeMuiTheme } from "./muiDefaultTheme.js";
+import { ThemeProvider } from "styled-components";
+
+import theme from "./theme";
 import { GlobalStyles } from "./GlobalStyles";
 
 export default function Styling({ children }) {
-  const MuiTheme = makeMuiTheme();
   return (
     <StylesProvider injectFirst>
-      <MuiThemeProvider theme={MuiTheme}>
+      <ThemeProvider theme={theme}>
         <GlobalStyles />
         <CssBaseline />
         {children}
-      </MuiThemeProvider>
+      </ThemeProvider>
     </StylesProvider>
   );
 }

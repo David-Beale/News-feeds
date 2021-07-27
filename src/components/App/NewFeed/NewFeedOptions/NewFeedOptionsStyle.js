@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { IconButton } from "@material-ui/core";
 
-const color = "rgb(10, 144, 197)";
-
 export const OptionsBody = styled.div`
   height: 300px;
   width: 100%;
@@ -13,7 +11,7 @@ export const OptionsBody = styled.div`
 export const OptionNum = styled.div`
   position: relative;
   top: -25px;
-  color: ${color};
+  color: ${({ theme }) => theme.primaryColor};
   font-weight: 600;
 `;
 export const Image = styled.img`
@@ -23,7 +21,7 @@ export const Image = styled.img`
 export const Text = styled.div`
   text-align: center;
   padding: 10px;
-  color: ${color};
+  color: ${({ theme }) => theme.primaryColor};
   overflow-wrap: break-word;
   max-height: 250px;
   width: 250px;

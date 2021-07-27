@@ -1,10 +1,6 @@
 import styled from "styled-components";
 import { Field } from "../NewFeedMenusStyle";
 
-const topShadow = "#cbced1";
-const bottomShadow = "#ffffff";
-const color = "rgb(10, 144, 197)";
-
 export const Form = styled.form`
   width: 100%;
   display: flex;
@@ -15,8 +11,8 @@ export const Form = styled.form`
 export const InputField = styled(Field)`
   margin-bottom: 25px;
   padding: 15px 10px 15px 5px;
-  box-shadow: inset 8px 8px 8px ${topShadow},
-    inset -8px -8px 8px ${bottomShadow};
+  box-shadow: inset 8px 8px 8px ${({ theme }) => theme.topShadow},
+    inset -8px -8px 8px ${({ theme }) => theme.bottomShadow};
 `;
 
 export const Input = styled.input`
@@ -27,7 +23,7 @@ export const Input = styled.input`
   width: 100%;
   height: 34px;
   font-weight: 600;
-  color: ${color};
+  color: ${({ theme }) => theme.primaryColor};
   margin-right: 10px;
 `;
 
@@ -45,7 +41,7 @@ export const ErrorBox = styled.div`
   font-weight: 600;
   color: #d64958;
   align-items: center;
-  box-shadow: inset 8px 8px 8px ${topShadow},
+  box-shadow: inset 8px 8px 8px ${({ theme }) => theme.topShadow},
     inset -8px -8px 8px hsl(353, 92%, 90%);
 `;
 
@@ -68,6 +64,6 @@ export const Warning = styled.div`
 export const styleIcon = (Component) => {
   return styled(Component)`
     margin: 0 10px;
-    color: ${color};
+    color: ${({ theme }) => theme.primaryColor};
   `;
 };

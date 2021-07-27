@@ -1,11 +1,9 @@
 import styled from "styled-components";
 
-const topShadow = "#cbced1";
-const bottomShadow = "#ffffff";
-
 export const StyledTable = styled.div`
   max-width: calc(100vw - 20px);
-  box-shadow: 13px 13px 20px ${topShadow}, -13px -13px 20px ${bottomShadow};
+  box-shadow: 13px 13px 20px ${({ theme }) => theme.topShadow},
+    -13px -13px 20px ${({ theme }) => theme.bottomShadow};
   border-radius: 10px 10px 0px 0px;
   overflow-x: auto;
 `;

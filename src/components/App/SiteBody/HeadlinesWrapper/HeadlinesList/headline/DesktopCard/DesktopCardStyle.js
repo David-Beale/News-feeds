@@ -1,6 +1,4 @@
 import styled from "styled-components";
-const topShadow = "#cbced1";
-const bottomShadow = "#ffffff";
 
 export const Container = styled.div`
   height: 250px;
@@ -9,14 +7,16 @@ export const Container = styled.div`
   display: flex;
   background: #ecf0f3;
   border-radius: 40px;
-  box-shadow: 13px 13px 20px ${topShadow}, -13px -13px 20px ${bottomShadow};
+  box-shadow: 13px 13px 20px ${({ theme }) => theme.topShadow},
+    -13px -13px 20px ${({ theme }) => theme.bottomShadow};
   overflow: hidden;
   position: relative;
   cursor: pointer;
   margin: 20px 0;
   &:hover {
     transform: scale(1.05);
-    box-shadow: 13px 13px 40px ${topShadow}, -13px -13px 40px ${bottomShadow};
+    box-shadow: 13px 13px 40px ${({ theme }) => theme.topShadow},
+      -13px -13px 40px ${({ theme }) => theme.bottomShadow};
   }
   transition: 100ms;
 `;

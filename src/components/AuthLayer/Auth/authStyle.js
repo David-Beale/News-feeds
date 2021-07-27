@@ -1,10 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const color = "rgb(10, 144, 197)";
-const topShadow = "#cbced1";
-const bottomShadow = "#ffffff";
-
 export const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -27,22 +23,24 @@ export const SubContainer = styled.div`
   align-items: center;
   background: #ecf0f3;
   border-radius: 40px;
-  box-shadow: 13px 13px 20px ${topShadow}, -13px -13px 20px ${bottomShadow};
+  box-shadow: 13px 13px 20px ${({ theme }) => theme.topShadow},
+    -13px -13px 20px ${({ theme }) => theme.bottomShadow};
   overflow: hidden;
   position: relative;
   padding: 20px;
   transition: bottom 750ms cubic-bezier(0.68, -0.55, 0.265, 1.55), height 0.2s;
 `;
 export const LogoContainer = styled.div`
-  background: ${color}; /* fallback for old browsers */
+  background: ${({ theme }) =>
+    theme.primaryColor}; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to right,
-    ${color},
+    ${({ theme }) => theme.primaryColor},
     rgb(65, 189, 238)
   ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
     to right,
-    ${color},
+    ${({ theme }) => theme.primaryColor},
     rgb(65, 189, 238)
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
@@ -78,30 +76,30 @@ const AuthMessageBox = styled.div`
 
 export const ConfirmChangeContainer = styled(AuthMessageBox)`
   text-align: center;
-  box-shadow: inset 8px 8px 8px ${topShadow},
-    inset -8px -8px 8px ${bottomShadow};
-  color: ${color};
+  box-shadow: inset 8px 8px 8px ${({ theme }) => theme.topShadow},
+    inset -8px -8px 8px ${({ theme }) => theme.bottomShadow};
+  color: ${({ theme }) => theme.primaryColor};
   height: 75px;
 `;
 
 export const AuthErrorBox = styled(AuthMessageBox)`
   align-items: flex-start;
-  box-shadow: inset 8px 8px 8px ${topShadow},
+  box-shadow: inset 8px 8px 8px ${({ theme }) => theme.topShadow},
     inset -8px -8px 8px
       ${(props) => (props.pass ? "hsl(146, 79%, 87%)" : "hsl(353, 92%, 90%)")};
 `;
 
 export const WelcomeBox = styled(AuthMessageBox)`
-  box-shadow: inset 8px 8px 8px ${topShadow},
-    inset -8px -8px 8px ${bottomShadow};
-  color: ${color};
+  box-shadow: inset 8px 8px 8px ${({ theme }) => theme.topShadow},
+    inset -8px -8px 8px ${({ theme }) => theme.bottomShadow};
+  color: ${({ theme }) => theme.primaryColor};
   font-weight: 500;
   height: 160px;
   padding: 30px;
 `;
 
 export const StyledLink = styled(Link)`
-  color: ${color};
+  color: ${({ theme }) => theme.primaryColor};
   cursor: pointer;
   font-size: 14px;
 `;
@@ -109,7 +107,7 @@ export const StyledLink = styled(Link)`
 export const ForgotPasswordHeader = styled.div`
   width: 100%;
   text-align: center;
-  color: ${color};
+  color: ${({ theme }) => theme.primaryColor};
   margin-bottom: 30px;
 `;
 
@@ -132,8 +130,8 @@ export const Field = styled.div`
 export const InputField = styled(Field)`
   margin-bottom: 25px;
   padding: 15px 10px 15px 5px;
-  box-shadow: inset 8px 8px 8px ${topShadow},
-    inset -8px -8px 8px ${bottomShadow};
+  box-shadow: inset 8px 8px 8px ${({ theme }) => theme.topShadow},
+    inset -8px -8px 8px ${({ theme }) => theme.bottomShadow};
 `;
 
 export const AuthInput = styled.input`
@@ -144,7 +142,7 @@ export const AuthInput = styled.input`
   width: 100%;
   height: 34px;
   font-weight: 600;
-  color: ${color};
+  color: ${({ theme }) => theme.primaryColor};
   margin-right: 10px;
 `;
 
@@ -153,7 +151,8 @@ export const AuthButton = styled.button`
   margin-top: 20px;
   margin-bottom: 10px;
   padding: 6px 12px;
-  background-color: ${(props) => (props.disabled ? "#536a7e" : color)};
+  background-color: ${(props) =>
+    props.disabled ? "#536a7e" : props.theme.primaryColor};
   border: none;
   outline: none;
   height: 50px;
@@ -162,10 +161,11 @@ export const AuthButton = styled.button`
   font-size: 14px;
   font-weight: bold;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
-  box-shadow: 5px 5px 5px ${topShadow}, -5px -5px 5px ${bottomShadow};
+  box-shadow: 5px 5px 5px ${({ theme }) => theme.topShadow},
+    -5px -5px 5px ${({ theme }) => theme.bottomShadow};
 `;
 export const AuthRedirectText = styled.div`
-  color: ${color};
+  color: ${({ theme }) => theme.primaryColor};
   font-size: 14px;
   margin-right: 10px;
 `;
@@ -177,6 +177,6 @@ export const AuthCheck = styled.div`
 export const styleLoginIcon = (Component) => {
   return styled(Component)`
     margin: 0 10px;
-    color: ${color};
+    color: ${({ theme }) => theme.primaryColor};
   `;
 };

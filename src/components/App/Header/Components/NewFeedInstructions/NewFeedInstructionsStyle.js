@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-const topShadow = "#cbced1";
-
 export const Text = styled.div`
   color: rgb(10, 144, 197);
   font-size: 1rem;
@@ -21,5 +19,5 @@ export const Container = styled.div`
   height: 75px;
   padding: 0 15px;
   box-shadow: ${(props) =>
-    props.isDesktop ? "" : `0px -5px 10px ${topShadow}`};
+    props.isDesktop ? "" : `0px -5px 10px ${({ theme }) => theme.topShadow}`};
 `;

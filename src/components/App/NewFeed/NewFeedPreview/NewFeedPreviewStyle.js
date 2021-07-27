@@ -1,12 +1,10 @@
 import styled from "styled-components";
 
-const color = "rgb(10, 144, 197)";
-
 export const PreviewContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: ${color};
+  color: ${({ theme }) => theme.primaryColor};
 `;
 export const MessageContainer = styled.div`
   height: 32px;

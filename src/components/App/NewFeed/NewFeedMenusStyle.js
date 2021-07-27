@@ -1,9 +1,5 @@
 import styled from "styled-components";
 
-const color = "rgb(10, 144, 197)";
-const topShadow = "#cbced1";
-const bottomShadow = "#ffffff";
-
 export const Backdrop = styled.div`
   position: fixed;
   top: 0;
@@ -32,7 +28,8 @@ export const SubContainer = styled.div`
   align-items: center;
   background: #ecf0f3;
   border-radius: 40px;
-  box-shadow: 13px 13px 20px ${topShadow}, -13px -13px 20px ${bottomShadow};
+  box-shadow: 13px 13px 20px ${({ theme }) => theme.topShadow},
+    -13px -13px 20px ${({ theme }) => theme.bottomShadow};
   overflow: hidden;
   position: relative;
   padding: 20px;
@@ -50,7 +47,7 @@ export const Field = styled.div`
 
 export const Title = styled.div`
   font-weight: 600;
-  color: ${color};
+  color: ${({ theme }) => theme.primaryColor};
   font-size: 1.7rem;
   margin: 25px 0;
 `;
@@ -59,7 +56,8 @@ export const Button = styled.button`
   margin-top: 20px;
   margin-bottom: 10px;
   padding: 6px 12px;
-  background-color: ${(props) => (props.disabled ? "#536a7e" : color)};
+  background-color: ${(props) =>
+    props.disabled ? "#536a7e" : props.theme.primaryColor};
   border: none;
   outline: none;
   height: 50px;
@@ -68,5 +66,6 @@ export const Button = styled.button`
   font-size: 14px;
   font-weight: bold;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
-  box-shadow: 5px 5px 5px ${topShadow}, -5px -5px 5px ${bottomShadow};
+  box-shadow: 5px 5px 5px ${({ theme }) => theme.topShadow},
+    -5px -5px 5px ${({ theme }) => theme.bottomShadow};
 `;
