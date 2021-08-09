@@ -45,9 +45,9 @@ export default function ForgotPasswordVerify({ history, setHeight }) {
     setNewPassword(e.target.value);
   };
   useEffect(() => {
-    const regex = /Code=[^&]+/gi;
-    const search = window.location.search;
-    const code = search.match(regex)[0].slice(5);
+    const regex = /oobCode=[^&]+/gi;
+    const search = window.location.hash;
+    const code = search.match(regex)[0].slice(8);
     setVerificationCode(code);
   }, []);
 
