@@ -12,7 +12,7 @@ body {
   overflow: hidden;
   color: rgb(10, 144, 197);
   padding: 0;
-  min-height: 100vh;
+  height: 100vh;
   width: 100vw;
   background-color: #ecf0f3;
 }
