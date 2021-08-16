@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "43d74fbd3af0d31b5890e8cbc7557587",
+    "revision": "e2f807671f99e9117ad9d966d84f62bd",
     "url": "/News-feeds/index.html"
   },
   {
-    "revision": "eb65016a736c485850bb",
+    "revision": "d2d0c031cc12ea085700",
     "url": "/News-feeds/static/css/main.25aa45fc.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/News-feeds/static/js/2.7eed7cda.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "eb65016a736c485850bb",
-    "url": "/News-feeds/static/js/main.ebc12be2.chunk.js"
+    "revision": "d2d0c031cc12ea085700",
+    "url": "/News-feeds/static/js/main.3349290c.chunk.js"
   },
   {
     "revision": "c9596417652b4e7885f1",
